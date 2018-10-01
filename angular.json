@@ -89,7 +89,9 @@
               "src/tsconfig.spec.json"
             ],
             "exclude": [
-              "**/node_modules/**"
+              "**/node_modules/**",
+              "**/src/**/*.spec.ts",
+              "**/e2e/**/*.ts"
             ]
           }
         }

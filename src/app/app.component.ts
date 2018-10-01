@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'incode-internship-frontend';
+  title: string = 'incode-internship-frontend';
 }
