@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserModel } from '../../../shared/models/UserModel';
-import { LoginServiceService } from '../../services/login-service.service';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +8,8 @@ import { LoginServiceService } from '../../services/login-service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  @Output() loginEvent: EventEmitter<UserModel> = new EventEmitter<UserModel>();
   user: UserModel;
-  constructor(private service: LoginServiceService) {}
 
   userFormGroup: FormGroup = new FormGroup({
     login: new FormControl(''),
@@ -18,7 +17,6 @@ export class LoginComponent {
   });
   onSubmit(): void {
     this.user = this.userFormGroup.value;
-    this.service.userLogin(this.user);
+    this.loginEvent.emit(this.user);
   }
-
 }
