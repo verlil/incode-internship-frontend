@@ -21,7 +21,7 @@ export class LoginContainerComponent {
     this.store.pipe(select(selectLoaded)).subscribe(
       (isLoaded: boolean) => {
         if (isLoaded === true) {
-          this.router.navigate(['/shop/']);
+          this.router.navigate(['/admin']);
         }
       }
     );
