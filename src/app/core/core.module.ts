@@ -19,7 +19,6 @@ import { loginReducer } from './@store/reducers/login.reducer';
     SharedModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({loginReducer: loginReducer}),
     EffectsModule.forRoot([LoginEffects])
   ],
   declarations: [CoreComponent, LoginComponent, LoginContainerComponent]

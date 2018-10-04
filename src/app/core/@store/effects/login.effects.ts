@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import {catchError, map, mergeMap, switchMap, tap} from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { LoginService } from '../../services/login.service';
@@ -13,7 +13,7 @@ import { LogInAction, LogInSuccess } from '../actions/login.actions';
 export class LoginEffects {
   constructor(
     private actions: Actions,
-    private service: LoginService
+    private service: LoginService,
   ) {}
   @Effect()
   logInEffect: Observable<any> = this.actions.pipe(
@@ -21,7 +21,6 @@ export class LoginEffects {
     mergeMap((action: LogInAction) => this.service.logIn(action.payload).pipe(
       map((data: any) => {
         localStorage.setItem('token', data.token);
-
         return { type: LOGIN_SUCCESS, payload: localStorage.getItem('token') };
       }),
       catchError((error: any) => of({ type: LOGIN_FAILED, payload: error } ))

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { LogInAction } from '../../@store/actions/login.actions';
-import { LoginState } from '../../@store/selectors/login.selectors';
+import {LoginState, selectLoaded} from '../../@store/selectors/login.selectors';
 
 @Component({
   selector: 'app-login-container',
@@ -11,12 +12,19 @@ import { LoginState } from '../../@store/selectors/login.selectors';
   styleUrls: ['./login-container.component.css']
 })
 export class LoginContainerComponent {
+  token: boolean;
   isUserAuthenticated: boolean;
-  constructor(private store: Store<LoginState>) {
-    this.store.select('loginReducer')
-      .subscribe((state: any) => {
-        this.isUserAuthenticated = state.isAuthenticated;
-      });
+  constructor(
+    private store: Store<LoginState>,
+    private router: Router
+  ) {
+    this.store.pipe(select(selectLoaded)).subscribe(
+      (isLoaded: boolean) => {
+        if (isLoaded === true) {
+          this.router.navigate(['/shop/']);
+        }
+      }
+    );
   }
 
   onLogin(event: any): void {
