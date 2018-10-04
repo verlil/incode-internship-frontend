@@ -1,18 +1,11 @@
-import { UserModel } from '../../../shared/models/UserModel';
-import {LoginActions, LOGIN, LOGIN_SUCCESS, LOGIN_FAILED} from '../actions/login.actions';
-
-export interface LoginState {
-  isAuthenticated: boolean;
-  user: UserModel;
-  loginErrorMessage: string | null;
-  logginIn: boolean;
-}
+import {LoginActions, LOGIN, LOGIN_SUCCESS, LOGIN_FAILED, GET_USER_SUCCESS, GET_USER_FAILED} from '../actions/login.actions';
+import { LoginState } from '../selectors/login.selectors';
 
 export const initialState: LoginState = {
-  isAuthenticated: false,
   user: null,
-  loginErrorMessage: null,
-  logginIn: false,
+  loading: false,
+  loaded: false,
+  hasToken: false,
 };
 
 export function loginReducer(state: LoginState = initialState, action: LoginActions): LoginState {
@@ -20,21 +13,33 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
     case LOGIN: {
       return {
         ...state,
-        logginIn: true
+        loading: true,
       };
     }
     case LOGIN_SUCCESS: {
       return {
-        isAuthenticated: true,
-        user: action.payload,
-        loginErrorMessage: null,
-        logginIn: false,
+        ...state,
+        hasToken: true
       };
     }
     case LOGIN_FAILED: {
       return {
         ...state,
-        logginIn: false
+        loading: false
+      };
+    }
+    case GET_USER_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        user: action.payload
+      };
+    }
+    case GET_USER_FAILED: {
+      return {
+        ...state,
+        loading: false
       };
     }
     default: {

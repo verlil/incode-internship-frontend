@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
 import { LogInAction } from '../../@store/actions/login.actions';
-import { LoginState } from '../../@store/reducers/login.reducer';
+import { LoginState } from '../../@store/selectors/login.selectors';
 
 @Component({
   selector: 'app-login-container',
