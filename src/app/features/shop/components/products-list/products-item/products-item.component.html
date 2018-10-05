@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-content fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <img
+        class="product-image"
+        [src]="product.thumbnail"
+        [alt]="product.title">
+    </div>
+    <div>{{ product.title }}</div>
+    <div>{{ product.price }}</div>
+    <div>
+      <mat-icon class="product-action-icon">favorite</mat-icon>
+      <mat-icon class="product-action-icon">add_shopping_cart</mat-icon>
+    </div>
+  </mat-card-content>
+</mat-card>
+
