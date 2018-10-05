@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule } from '@angular/material';
+import {  MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
@@ -11,7 +16,11 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule } fr
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule,
+    FlexLayoutModule,
+    MatCardModule,
+    MatToolbarModule
   ],
   exports: [
     CommonModule,
@@ -19,7 +28,12 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule } fr
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule,
+    FlexLayoutModule,
+    MatCardModule,
+    MatToolbarModule
   ]
 })
-export class MaterialModule { }
+export class MaterialModule {
+}
