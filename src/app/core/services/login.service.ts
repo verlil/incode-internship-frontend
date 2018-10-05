@@ -4,7 +4,7 @@ import { UserAuthModel } from '../../shared/models/UserAuthModel';
 import { Observable } from 'rxjs';
 import { LoginResponseModel } from '../../shared/models/LoginResponseModel';
 import { UserResponseModel } from '../../shared/models/UserResponseModel';
-import { BASE_URL } from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +15,12 @@ export class LoginService {
   }
 
   logIn(user: UserAuthModel): Observable<LoginResponseModel> {
-    return this.http.post<LoginResponseModel>(`${BASE_URL}/login`, user);
+    return this.http.post<LoginResponseModel>(`${environment.baseUrl}/login`, user);
   }
 
   getUserByToken(token: string): Observable<UserResponseModel> {
-    return this.http.get<UserResponseModel>(`${BASE_URL}/user`, {headers: new HttpHeaders({'Authorization': `Bearer ${token}`})});
+    return this.http.get<UserResponseModel>(
+      `${environment.baseUrl}/user`, {headers: new HttpHeaders({'Authorization': `Bearer ${token}`})}
+      );
   }
 }

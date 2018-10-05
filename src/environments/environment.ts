@@ -3,10 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment: any = {
-  production: false
+  production: false,
+  baseUrl: 'http://localhost:8000'
 };
-
-export const BASE_URL: string = 'http://localhost:8000';
 
 /*
  * For easier debugging in development mode, you can import the following file
