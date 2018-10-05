@@ -1,3 +1,13 @@
-<p>
-  shop works!
-</p>
+<div fxLayout="row">
+
+  <app-filters
+    fxFlex="30"
+  ></app-filters>
+
+  <app-products-list
+    [products$]="products$"
+    fxFlex="70"
+  ></app-products-list>
+
+</div>
+
