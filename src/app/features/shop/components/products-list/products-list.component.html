@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="list-header">
+  <mat-toolbar-row fxLayoutAlign="end center">
+    <mat-icon class="example-icon">view_list</mat-icon>
+    <mat-icon class="example-icon">view_module</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card *ngIf="!((products$ | async )?.length)">
+  <mat-card-content>
+    <mat-card-title> Sorry, we sold all our products</mat-card-title>
+  </mat-card-content>
+</mat-card>
+
+<app-products-item
+  *ngFor="let product of (products$ | async )"
+  [product]="product"
+></app-products-item>
