@@ -15,15 +15,14 @@ export class WishlistService {
   getWishList(): Observable<{success: boolean; wishlist: WishList}> {
 
     const headers: HttpHeaders = new HttpHeaders({
-      'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYjcyNzA5Y2YzNDA4MTViNWJjYmMzNiIsImxvZ2' +
-      'luIjoiYSIsInBhc3N3b3JkIjoiJDJiJDEyJC5WQUxvRjBFS1pBUmY0S0VPdWdBUHU5YVNtNzkvRHQy' +
-      'Um5YZjFseGhxYnBHQkFoM2tOd051IiwiaWF0IjoxNTM4NzQ4NzU2' +
-      'LCJleHAiOjE1Mzg3NTE0NTZ9.J6xRmXn617IgrA33xYphvYlYEWJrjGAjRD3eWY3nUqM'
+      'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYjcyNzA5Y2YzNDA4MTViNWJ' +
+      'jYmMzNiIsImxvZ2luIjoiYSIsInBhc3N3b3JkIjoiJDJiJDEyJC5WQUxvRjBFS1pBUmY0S0' +
+      'VPdWdBUHU5YVNtNzkvRHQyUm5YZjFseGhxYnBHQkFoM2tOd051IiwiaWF0' +
+      'IjoxNTM4NzUyMTYzLCJleHAiOjE1Mzg3NTQ4NjN9.OqDz7udKMrDj0rYYiyrNObBSNXhw4lY1Vc7hdVvLjqA'
     });
-    const url: string = environment.baseUrl;
     const id: string = '5bb72709cf340815b5bcbc36';
 
     return this.http.get<{success: boolean; wishlist: WishList}>
-    (`${url}/wishlists/${id}`, {headers});
+    (`${environment.baseUrl}/wishlists/${id}`, {headers});
   }
 }

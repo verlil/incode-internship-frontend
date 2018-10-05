@@ -17,7 +17,7 @@ export class WishlistListComponent implements OnInit {
   wishlist$: Observable<WishList>;
   wishlistLoaded$: Observable<boolean>;
 
-  constructor(private store: Store<fromStore.WhishListGeneralState>) {}
+  constructor(private store: Store<fromStore.WhishListFeatureState>) {}
 
   ngOnInit(): void {
       this.wishlist$ = this.store.pipe(select(fromStore.getWishlist));
