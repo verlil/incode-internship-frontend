@@ -46,10 +46,8 @@ export function reducer(
       };
     }
 
-    default: state = initialState;
+    default: return state;
   }
-
-  return state;
 }
 
 export const getCategoriesEntities: any = (state: CategoryState): { [id: number]: Category } => state.entities;

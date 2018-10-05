@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../@store';
-import { Category } from '../../../../shared/models/category.model';
 
 @Component({
   selector: 'app-add-category',
@@ -19,17 +18,13 @@ export class AddCategoryComponent {
     ) { }
 
     categoryForm: FormGroup = this.fb.group({
-      title: [''],
-      description: ['']
+      title: ['', Validators.required],
+      description: ['', Validators.required]
     });
-
-    newCategory: Category;
 
     onSubmit(): void {
 
-      this.newCategory = this.categoryForm.value;
-
-      this.store.dispatch(new fromStore.AddCategory(this.newCategory));
+      this.store.dispatch(new fromStore.AddCategory(this.categoryForm.value));
 
     }
 }

@@ -2,12 +2,12 @@
   <form class="form__main" [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.value)">
 
     <mat-form-field class="form__input">
-      <input matInput type="text" formControlName="title" required placeholder="Category Title:">
+      <input matInput type="text" formControlName="title" placeholder="Category Title:">
     </mat-form-field>
     
     <mat-form-field class="form__textarea">
       <textarea matInput type="text" 
-      formControlName="description" required placeholder="Category Description:">
+      formControlName="description" placeholder="Category Description:">
       </textarea>
     </mat-form-field>
     

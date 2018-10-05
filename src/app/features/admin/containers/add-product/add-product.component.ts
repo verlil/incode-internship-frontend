@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../@store';
-import {Product} from '../../../../shared/models/product.model';
 
 @Component({
   selector: 'app-add-product',
@@ -19,21 +18,17 @@ export class AddProductComponent  {
     ) { }
 
     productForm: FormGroup = this.fb.group({
-      title: [''],
-      description: [''],
-      category_title: [''],
-      thumbnail: [''],
-      price: [''],
-      stock: [''],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      category_title: ['', Validators.required],
+      thumbnail: ['', Validators.required],
+      price: ['', Validators.required],
+      stock: ['', Validators.required],
     });
-
-    newProduct: Product;
 
     onSubmit(): void {
 
-      this.newProduct = this.productForm.value;
-
-      this.store.dispatch(new fromStore.AddProduct(this.newProduct));
+      this.store.dispatch(new fromStore.AddProduct(this.productForm.value));
 
     }
 }

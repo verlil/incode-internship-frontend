@@ -2,29 +2,29 @@
   <form class="form__main" [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
 
     <mat-form-field class="form__input">
-      <input matInput class="form-control" type="text" formControlName="title" required placeholder="Product Title:">
+      <input matInput class="form-control" type="text" formControlName="title" placeholder="Product Title:">
     </mat-form-field>
 
     <mat-form-field class="form__textarea">
-      <textarea matInput class="form-control" type="text" formControlName="description" 
-      required placeholder="Product Description:">
+      <textarea matInput class="form-control" type="text" formControlName="description"
+       placeholder="Product Description:">
       </textarea>
     </mat-form-field>
 
     <mat-form-field class="form__input">
-      <input matInput class="form-control" type="text" formControlName="category_title" required placeholder="Product Category Title:">
+      <input matInput class="form-control" type="text" formControlName="category_title" placeholder="Product Category Title:">
     </mat-form-field>
 
     <mat-form-field class="form__input">
-        <input matInput class="form-control" type="text" formControlName="thumbnail" required placeholder="Product Thumbnail:">
+        <input matInput class="form-control" type="text" formControlName="thumbnail" placeholder="Product Thumbnail:">
     </mat-form-field>
 
     <mat-form-field class="form__input">
-        <input matInput class="form-control" type="text" formControlName="price" required placeholder="Product Price:">
+        <input matInput class="form-control" type="number" formControlName="price" placeholder="Product Price:">
     </mat-form-field>
 
     <mat-form-field class="form__input">
-        <input matInput class="form-control" type="text" formControlName="stock" required placeholder="Product Stock:">
+        <input matInput class="form-control" type="number" formControlName="stock" placeholder="Product Stock:">
     </mat-form-field>
   
 

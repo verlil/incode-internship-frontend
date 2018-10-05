@@ -47,10 +47,8 @@ export function reducer(
       };
     }
 
-    default: state = initialState;
+    default: return state;
   }
-
-  return state;
 }
 
 export const getProductsEntities: any = (state: ProductState): { [id: number]: Product } => state.entities;

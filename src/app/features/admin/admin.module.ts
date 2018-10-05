@@ -8,14 +8,13 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { AddProductComponent } from './containers/add-product/add-product.component';
-import { AddCategoryComponent } from './containers/add-category/add-category.component';
 import { AdminComponent } from './admin.component';
 import { SharedModule } from '../../shared/shared.module';
 
 import { reducers, effects } from './@store';
 
 import * as fromServices from './services';
+import * as fromContainers from './containers';
 
 @NgModule({
   imports: [
@@ -25,13 +24,12 @@ import * as fromServices from './services';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    StoreModule.forFeature('AdminReducer', reducers),
+    StoreModule.forFeature('admin', reducers),
     EffectsModule.forFeature(effects)
   ],
   declarations: [
     AdminComponent,
-    AddProductComponent,
-    AddCategoryComponent],
+    ...fromContainers.components],
   providers:  [...fromServices.services, HttpClientModule]
 })
 export class AdminModule { }
