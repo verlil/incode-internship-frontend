@@ -1,5 +1,13 @@
 import {LoginActions, LOGIN, LOGIN_SUCCESS, LOGIN_FAILED, GET_USER_SUCCESS, GET_USER_FAILED} from '../actions/login.actions';
-import { LoginState } from '../selectors/login.selectors';
+import {UserAuthModel} from '../../../shared/models/UserAuthModel';
+
+export class LoginState {
+  user: UserAuthModel;
+  loading: boolean;
+  loaded: boolean;
+  isAuthenticated: boolean;
+  hasToken: boolean;
+}
 
 export const initialState: LoginState = {
   user: null,

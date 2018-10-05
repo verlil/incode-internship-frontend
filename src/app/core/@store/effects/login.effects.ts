@@ -8,7 +8,8 @@ import { of } from 'rxjs';
 import { LoginService } from '../../services/login.service';
 import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED, GET_USER_SUCCESS, GET_USER_FAILED } from '../actions/login.actions';
 import { LogInAction, LogInSuccess } from '../actions/login.actions';
-import { UserModel } from '../../../shared/models/UserModel';
+import { UserResponseModel } from '../../../shared/models/UserResponseModel';
+import { LoginResponseModel } from '../../../shared/models/LoginResponseModel';
 
 @Injectable()
 export class LoginEffects {
@@ -20,10 +21,10 @@ export class LoginEffects {
   logInEffect: Observable<any> = this.actions.pipe(
     ofType(LOGIN),
     switchMap((action: LogInAction) => this.service.logIn(action.payload).pipe(
-      map((data: any) => {
+      map((data: LoginResponseModel) => {
         localStorage.setItem('token', data.token);
 
-        return { type: LOGIN_SUCCESS, payload: localStorage.getItem('token') };
+        return { type: LOGIN_SUCCESS, payload: data.token };
       }),
       catchError((error: any) => of({ type: LOGIN_FAILED, payload: error } ))
     ))
@@ -33,7 +34,7 @@ export class LoginEffects {
     ofType(LOGIN_SUCCESS),
     switchMap((action: LogInSuccess) => {
       return this.service.getUserByToken(action.payload).pipe(
-        map((user: UserModel) => ({ type: GET_USER_SUCCESS, payload: user })),
+        map((user: UserResponseModel) => ({ type: GET_USER_SUCCESS, payload: user })),
         catchError((error: any) => of({type: GET_USER_FAILED, payload: error}))
       );
     })

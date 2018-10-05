@@ -3,12 +3,12 @@
     <form [formGroup]="userFormGroup" (ngSubmit)="onSubmit()">
       <div>
       <mat-form-field>
-        <input matInput placeholder="Login" formControlName="login" required class="loginFormInput">
+        <input matInput placeholder="Login" formControlName="login" class="loginFormInput">
       </mat-form-field>
       </div>
       <div>
       <mat-form-field>
-        <input matInput placeholder="Password" formControlName="password" type="password" required class="loginFormInput">
+        <input matInput placeholder="Password" formControlName="password" type="password" class="loginFormInput">
       </mat-form-field>
       </div>
       <button mat-button type="submit" id="loginFormButton">Log In</button>

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Store, select } from '@ngrx/store';
 
 import { LogInAction } from '../../@store/actions/login.actions';
-import {LoginState, selectIsAuthenticated} from '../../@store/selectors/login.selectors';
+import { selectIsAuthenticated } from '../../@store/selectors/login.selectors';
+import { UserAuthModel } from '../../../shared/models/UserAuthModel';
+import {State} from '../../../@store/reducers';
+import { Go } from '../../../@store/actions';
 
 @Component({
   selector: 'app-login-container',
@@ -12,22 +14,19 @@ import {LoginState, selectIsAuthenticated} from '../../@store/selectors/login.se
   styleUrls: ['./login-container.component.css']
 })
 export class LoginContainerComponent {
-  token: boolean;
-  isUserAuthenticated: boolean;
   constructor(
-    private store: Store<LoginState>,
-    private router: Router
+    private store: Store<State>,
   ) {
     this.store.pipe(select(selectIsAuthenticated)).subscribe(
       (isLoaded: boolean) => {
-        if (isLoaded === true) {
-          this.router.navigate(['/admin']);
+        if (isLoaded) {
+          this.store.dispatch(new Go({path: ['admin']}));
         }
       }
     );
   }
 
-  onLogin(event: any): void {
+  onLogin(event: UserAuthModel): void {
     this.store.dispatch(new LogInAction(event));
   }
 }

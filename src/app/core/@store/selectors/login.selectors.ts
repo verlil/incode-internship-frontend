@@ -1,14 +1,7 @@
 import { UserAuthModel } from '../../../shared/models/UserAuthModel';
 import { createSelector } from '@ngrx/store';
 import { State } from '../../../@store/reducers';
-
-export interface LoginState {
-  user: UserAuthModel;
-  loading: boolean;
-  loaded: boolean;
-  isAuthenticated: boolean;
-  hasToken: boolean;
-}
+import { LoginState } from '../reducers/login.reducer';
 
 export const selectLoginState: any = (state: State): LoginState => state.login;
 

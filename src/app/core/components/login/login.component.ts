@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
+
 import { UserAuthModel } from '../../../shared/models/UserAuthModel';
 
 @Component({
@@ -9,14 +11,12 @@ import { UserAuthModel } from '../../../shared/models/UserAuthModel';
 })
 export class LoginComponent {
   @Output() loginEvent: EventEmitter<UserAuthModel> = new EventEmitter<UserAuthModel>();
-  user: UserAuthModel;
 
   userFormGroup: FormGroup = new FormGroup({
-    login: new FormControl(''),
-    password: new FormControl('')
+    login: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(3)])
   });
   onSubmit(): void {
-    this.user = this.userFormGroup.value;
-    this.loginEvent.emit(this.user);
+    this.loginEvent.emit(this.userFormGroup.value);
   }
 }
