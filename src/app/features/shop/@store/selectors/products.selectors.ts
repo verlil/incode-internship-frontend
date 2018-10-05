@@ -2,10 +2,9 @@ import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/s
 
 import { ShopState } from '../reducers';
 import * as fromProducts from '../reducers/products.reducer';
-import { ProductState } from '../reducers/products.reducer';
 
 export const getShopState: MemoizedSelector<object, ShopState> = createFeatureSelector<ShopState>('shop');
-export const getProductsState: MemoizedSelector<object, ProductState> = createSelector(
+export const getProductsState: MemoizedSelector<object, fromProducts.ProductState> = createSelector(
   getShopState,
   (state: ShopState) => {
 
