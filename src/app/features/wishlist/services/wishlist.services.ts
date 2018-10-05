@@ -5,22 +5,24 @@ import { HttpHeaders } from '@angular/common/http';
 
 import { WishList } from '../models/wishlist';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class WishlistService {
   constructor(private http: HttpClient) {}
 
-  getWishList(): Observable<WishList> {
+  getWishList(): Observable<{success: boolean; wishlist: WishList}> {
 
     const headers: HttpHeaders = new HttpHeaders({
-      'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbi' +
-      'I6ImEiLCJwYXNzd29yZCI6IiQyYiQxMiQuVkFMb0YwRUtaQVJmNEtFT3VnQVB1OWFTbTc5L0R0Ml' +
-      'JuWGYxbHhocWJwR0JBaDNrTndOdSIsIl9pZCI6IjViYjcyNzA5Y2YzNDA4MTViNWJjYmMzNiIsImlkIjoi' +
-      'NWJiNzI3MDljZjM0MDgxNWI1YmNiYzM2IiwiaWF0IjoxNTM4NzI5Nz' +
-      'M3LCJleHAiOjE1Mzg3MzI0Mzd9.JFC63ZQEANYM5pd6MKnIhk5SaNh1UYBzpMSJppFEPEU'
+      'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYjcyNzA5Y2' +
+      'YzNDA4MTViNWJjYmMzNiIsImxvZ2luIjoiYSIsInBhc3N3b3JkIjoiJDJiJDEyJC5WQUxvRjBFS1pBUmY0S0' +
+      'VPdWdBUHU5YVNtNzkvRHQyUm5YZjFseGhxYnBHQkFoM2tOd051IiwiaWF0IjoxNTM4NzM5Nz' +
+      'Y5LCJleHAiOjE1Mzg3NDI0Njl9.FEqdqr40NQluG7lw17VtOdi9dXBKmX1DCfoDTSPhaLY'
     });
 
     const id: string = '5bb72709cf340815b5bcbc36';
 
-    return this.http.get<WishList>(`http://localhost:8000/wishlists/${id}`, {headers}); // { headers: headers }
+    return this.http.get<{success: boolean; wishlist: WishList}>
+    (`http://localhost:8000/wishlists/${id}`, {headers});
   }
 }

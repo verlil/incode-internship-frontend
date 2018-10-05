@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-
-import { SharedModule } from '../../shared/shared.module';
-
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { SharedModule } from '../../shared/shared.module';
+
+// reducers, effects
 import { reducers, effects } from './@store';
 
 // components
