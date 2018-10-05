@@ -3,10 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { AdminComponent } from './admin.component';
+import { AddProductComponent } from './containers/add-product/add-product.component';
+import { AddCategoryComponent } from './containers/add-category/add-category.component';
 
 const routes: Routes = [
-  { path: 'example', component: AdminComponent },
-  { path: '**', redirectTo: 'example', pathMatch: 'full' }
+  {
+    path: '',
+    component: AdminComponent,
+    children: [
+      { path: 'addproduct', component: AddProductComponent, },
+      { path: 'addcategory', component: AddCategoryComponent },
+    ]
+  },
+  { path: '**', redirectTo: 'admin', pathMatch: 'full' }
 ];
 
 @NgModule({

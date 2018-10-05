@@ -1,0 +1,18 @@
+.form__container {
+    margin: 30px;
+    padding: 50px;
+}
+
+.form__main {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.form__input {
+    width: 100%;
+}
+
+.form__textarea {
+    width: 100%;
+}
