@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import {Product} from '../../../../shared/models/product';
 
 @Component({
   selector: 'app-products-list',
@@ -8,6 +9,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent {
-  @Input() products$: Observable<object>;
+  @Input() products$: Observable<Product[]>;
 
 }

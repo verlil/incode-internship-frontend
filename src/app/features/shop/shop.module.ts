@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers, effects } from './@store';
 
 import { SharedModule } from '../../shared/shared.module';
-import { ShopsRoutingModule } from './shop-routing.module';
+import { ShopRoutingModule } from './shop-routing.module';
 
 // components
 import * as fromComponents from './components';
@@ -22,7 +22,7 @@ import * as fromServices from './services';
   imports: [
     CommonModule,
     SharedModule,
-    ShopsRoutingModule,
+    ShopRoutingModule,
     StoreModule.forFeature('shop', reducers),
     EffectsModule.forFeature(effects)
   ],

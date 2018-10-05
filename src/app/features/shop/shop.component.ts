@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import * as fromStore from './@store';
+
 import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
+
+import * as fromStore from './@store';
 
 @Component({
   selector: 'app-shop',

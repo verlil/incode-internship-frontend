@@ -22,9 +22,9 @@ export class ProductsEffect {
     switchMap(() => {
 
       return this.productService.getProducts().pipe(
-        map ((response: Product[]) => {
+      map ((response: { success: boolean, products: Product[] }) => {
           const products: Product[] = response['products'];
-          const entities: { [key: string]: Product}  = {};
+          const entities: { [key: string]: Product }  = {};
 
           products.forEach((product: Product) => {
             entities[product.id] = product;
