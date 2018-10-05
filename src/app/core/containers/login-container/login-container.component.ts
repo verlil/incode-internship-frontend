@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { LogInAction } from '../../@store/actions/login.actions';
 import { selectIsAuthenticated } from '../../@store/selectors/login.selectors';
 import { UserAuthModel } from '../../../shared/models/UserAuthModel';
-import {State} from '../../../@store/reducers';
+import { State } from '../../../@store/reducers';
 import { Go } from '../../../@store/actions';
 
 @Component({

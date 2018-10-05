@@ -4,12 +4,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SharedModule } from '../shared/shared.module';
-import { LoginEffects } from './@store/effects/login.effects';
+import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { CoreComponent } from '../core/core.component';
-import { LoginComponent } from './components/login/login.component';
-import { LoginContainerComponent } from './containers/login-container/login-container.component';
+import { reducers, effects } from './@store';
+
+import * as fromContainers from './containers';
+import * as fromComponents from './components';
 
 @NgModule({
   imports: [
@@ -17,8 +19,11 @@ import { LoginContainerComponent } from './containers/login-container/login-cont
     SharedModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EffectsModule.forRoot([LoginEffects])
+    StoreModule.forFeature('core', reducers),
+    EffectsModule.forFeature(effects),
+
   ],
-  declarations: [CoreComponent, LoginComponent, LoginContainerComponent]
+  declarations: [CoreComponent, ...fromContainers.containers, fromComponents.components],
+  exports: [...fromContainers.containers, fromComponents.components]
 })
 export class CoreModule { }

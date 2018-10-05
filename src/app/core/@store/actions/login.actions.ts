@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
 
-export const LOGIN: string = 'LOGIN';
-export const LOGIN_SUCCESS: string = 'LOGIN_SUCCESS';
-export const LOGIN_FAILED: string = 'LOGIN_FAILED';
-export const GET_USER_SUCCESS: string = 'GET_USER_SUCCESS';
-export const GET_USER_FAILED: string = 'GET_USER_FAILED';
+export const LOGIN: string = '[Login] Login';
+export const LOGIN_SUCCESS: string = '[Login] Login Success';
+export const LOGIN_FAILED: string = '[Login] Login Failed';
+export const GET_USER_SUCCESS: string = '[Login] Get User Success';
+export const GET_USER_FAILED: string = '[Login] Get User Failed';
 
 export class LogInAction implements Action {
   readonly type: string = LOGIN;

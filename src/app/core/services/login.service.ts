@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserAuthModel } from '../../shared/models/UserAuthModel';
 import { Observable } from 'rxjs';
 import { LoginResponseModel } from '../../shared/models/LoginResponseModel';

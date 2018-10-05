@@ -50,7 +50,10 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
       return {
         ...state,
         loading: false,
-        loaded: true
+        loaded: true,
+        hasToken: false,
+        isAuthenticated: false,
+        user: null
       };
     }
     default: {
