@@ -2,9 +2,9 @@ import { Action } from '@ngrx/store';
 import { WishList } from '../../models/wishlist';
 
 // load wishlist
-export const LOAD_WISHLIST: string = '[Whislist] load Wishlist';
-export const LOAD_WISHLIST_FAIL: string = '[Whislist] load Wishlist Fail';
-export const LOAD_WISHLIST_SUCCESS: string = '[Whislist] load Wishlist Success';
+export const LOAD_WISHLIST: string = '[Whislist] Load Wishlist';
+export const LOAD_WISHLIST_FAIL: string = '[Whislist] Load Wishlist Fail';
+export const LOAD_WISHLIST_SUCCESS: string = '[Whislist] Load Wishlist Success';
 
 export class LoadWishlist implements Action {
   readonly type: string = LOAD_WISHLIST;

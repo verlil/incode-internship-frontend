@@ -1,7 +1,7 @@
 <div fxLayout="row">
   <div fxFlex="66" fxFlexOffset="17">
     <h3 mat-subheader>WishList</h3>
-    <mat-card *ngIf="!((wishlist$ | async).items.length)">
+    <mat-card *ngIf="!((wishlist$ | async).items)">
       <mat-card-content>
         <mat-card-title> Your wishlist is empty</mat-card-title>
       </mat-card-content>
@@ -11,7 +11,7 @@
         [product]= "product">
         </app-wishlist-item>
     </mat-list>
-    <div *ngIf="(wishlist$ | async).items.length" 
+    <div *ngIf="(wishlist$ | async).items" 
     class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
         <button mat-raised-button color="warn">clear</button>
         <button mat-raised-button color="primary">add to cart</button>

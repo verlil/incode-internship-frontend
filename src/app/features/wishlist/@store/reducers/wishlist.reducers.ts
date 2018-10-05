@@ -8,18 +8,7 @@ export interface WishlistState {
 }
 
 export const initialState: WishlistState = {
-
-  wishlist: {
-    id: '',
-      client: {
-        id: '',
-        login: '',
-        password: '',
-        iat: 0,
-        exp: 0
-      },
-      items: []
-    },
+  wishlist: {} as WishList,
   loaded: false,
   loading: false,
 };
