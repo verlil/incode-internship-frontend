@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -20,9 +17,6 @@ import * as fromContainers from './containers';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     SharedModule,
     StoreModule.forFeature('admin', reducers),
     EffectsModule.forFeature(effects)
@@ -30,6 +24,6 @@ import * as fromContainers from './containers';
   declarations: [
     AdminComponent,
     ...fromContainers.components],
-  providers:  [...fromServices.services, HttpClientModule]
+  providers:  [...fromServices.services]
 })
 export class AdminModule { }

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import { Effect, Actions, ofType } from '@ngrx/effects';
@@ -30,4 +30,5 @@ export class ProductsEffect {
       );
     })
   );
+
 }

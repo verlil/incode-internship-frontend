@@ -8,17 +8,17 @@ import { environment } from '../../../../environments/environment';
 @Injectable()
 export class CategoryService {
 
-  private categoryUrl: string = `${environment.baseUrl}categories`;
+  private categoryUrl: string = `${environment.baseUrl}/categories`;
 
   constructor(private http: HttpClient) {}
 
   addCategory(category: Category): any {
 
     const headers: HttpHeaders = new HttpHeaders({
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYjYyNzMwMDEzMjU3NTQ2N'
-      + 'zJlZTAzYyIsImxvZ2luIjoiQW50b244IiwicGFzc3dvcmQiOiIkMmIkMTIkYnJyWnNjWVBRZzZ6aEhibGtmSXVNZURCeX'
-      + 'MzQUV5M1pYV0ZvWExMNUpUSnpnYzJrbzFNdm0iLCJpYXQiOjE1Mzg3NDM5NDYsImV4cCI6MTUzODc0NjY0Nn0.y3zw'
-      + 'WHb-aFUf9NaDxmchWUOvMSjhVQQFIADyM4016yk'
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYjYyNzMwMDEzMjU3NTQ2NzJl'
+      + 'ZTAzYyIsImxvZ2luIjoiQW50b244IiwicGFzc3dvcmQiOiIkMmIkMTIkYnJyWnNjWVBRZzZ6aEhibGtmSXVNZURCeXMzQU'
+      + 'V5M1pYV0ZvWExMNUpUSnpnYzJrbzFNdm0iLCJpYXQiOjE1Mzg3NDg2NTEsImV4cCI6MTUzODc1MTM1MX0.eMNOGvfGPvV5O'
+      + 'Sl1aw6bcYwkiv8-DwWxiGKLwDyR4IU'
     });
 
     return this.http.post<Category>(this.categoryUrl, category, { headers });
