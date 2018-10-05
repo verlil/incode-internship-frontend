@@ -1,0 +1,31 @@
+import { Injectable } from '@angular/core';
+
+import { Effect, Actions, ofType } from '@ngrx/effects';
+import { of, Observable } from 'rxjs';
+import { map, switchMap, catchError } from 'rxjs/operators';
+
+import * as wishlistActions from '../actions/wishlist.action';
+import * as fromServices from '../../services';
+import { WishList } from '../../models/wishlist';
+
+@Injectable()
+export class WishlistEffects {
+  constructor(
+    private actions$: Actions,
+    private wishlistService: fromServices.WishlistService
+  ) {}
+
+  @Effect()
+  loadWishlist$: Observable<any> = this.actions$.pipe(ofType(wishlistActions.LOAD_WISHLIST),
+    switchMap(() => {
+      return this.wishlistService
+        .getWishList()
+        .pipe(
+          map((response: {success: boolean; wishlist: WishList}) => {
+            return new wishlistActions.LoadPWishlistSuccess(response.wishlist);
+          }),
+          catchError((error: any) => of(new wishlistActions.LoadWishlistFail(error)))
+        );
+    })
+);
+}
