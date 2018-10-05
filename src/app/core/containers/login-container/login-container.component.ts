@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 
 import { LogInAction } from '../../@store/actions/login.actions';
-import {LoginState, selectLoaded} from '../../@store/selectors/login.selectors';
+import {LoginState, selectIsAuthenticated} from '../../@store/selectors/login.selectors';
 
 @Component({
   selector: 'app-login-container',
@@ -18,7 +18,7 @@ export class LoginContainerComponent {
     private store: Store<LoginState>,
     private router: Router
   ) {
-    this.store.pipe(select(selectLoaded)).subscribe(
+    this.store.pipe(select(selectIsAuthenticated)).subscribe(
       (isLoaded: boolean) => {
         if (isLoaded === true) {
           this.router.navigate(['/admin']);

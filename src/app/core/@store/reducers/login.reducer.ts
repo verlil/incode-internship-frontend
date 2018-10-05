@@ -5,6 +5,7 @@ export const initialState: LoginState = {
   user: null,
   loading: false,
   loaded: false,
+  isAuthenticated: false,
   hasToken: false,
 };
 
@@ -33,13 +34,15 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
         ...state,
         loading: false,
         loaded: true,
+        isAuthenticated: true,
         user: action.payload
       };
     }
     case GET_USER_FAILED: {
       return {
         ...state,
-        loading: false
+        loading: false,
+        loaded: true
       };
     }
     default: {

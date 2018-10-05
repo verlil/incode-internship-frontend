@@ -1,4 +1,16 @@
 .login-form-container {
   margin-left: 40vw;
-  margin-top: 50vh;
+  margin-top: 35vh;
+}
+
+#loginFormCard {
+  width: 10vw;
+}
+
+#loginFormButton {
+  margin-left: 2.5vw;
+}
+
+.loginFormInput {
+  width: 7.5vw;
 }

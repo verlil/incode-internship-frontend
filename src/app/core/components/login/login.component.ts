@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { UserModel } from '../../../shared/models/UserModel';
+import { UserAuthModel } from '../../../shared/models/UserAuthModel';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +8,8 @@ import { UserModel } from '../../../shared/models/UserModel';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  @Output() loginEvent: EventEmitter<UserModel> = new EventEmitter<UserModel>();
-  user: UserModel;
+  @Output() loginEvent: EventEmitter<UserAuthModel> = new EventEmitter<UserAuthModel>();
+  user: UserAuthModel;
 
   userFormGroup: FormGroup = new FormGroup({
     login: new FormControl(''),

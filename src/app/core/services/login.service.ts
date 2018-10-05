@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { UserAuthModel } from '../../shared/models/UserAuthModel';
 import { UserModel } from '../../shared/models/UserModel';
 import { Observable } from 'rxjs';
 
@@ -13,11 +14,11 @@ export class LoginService {
   constructor(private http: HttpClient) {
   }
 
-  logIn(user: UserModel): Observable<any> {
-    return this.http.post<UserModel>(this.loginURL, user);
+  logIn(user: UserAuthModel): Observable<any> {
+    return this.http.post<UserAuthModel>(this.loginURL, user);
   }
 
   getUserByToken(token: string): Observable<any> {
-    return this.http.get<any>(this.getUserURL, {headers: new HttpHeaders({'Authorization': `Bearer ${token}`})});
+    return this.http.get<UserModel>(this.getUserURL, {headers: new HttpHeaders({'Authorization': `Bearer ${token}`})});
   }
 }
