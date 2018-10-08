@@ -1,0 +1,12 @@
+<mat-sidenav-container class="container">
+        <mat-sidenav mode="side" opened>
+            <nav class="nav">
+                <h1>Admin</h1>
+                <button mat-raised-button color="primary" routerLink="addproduct">Add Product</button>
+                <button mat-raised-button color="primary" routerLink="addcategory">Add Category</button>
+            </nav>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+</mat-sidenav-container>

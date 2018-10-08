@@ -1,0 +1,18 @@
+<div class="form__container">
+  <form class="form__main" [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.value)">
+
+    <mat-form-field class="form__input">
+      <input matInput type="text" formControlName="title" placeholder="Category Title:">
+    </mat-form-field>
+    
+    <mat-form-field class="form__textarea">
+      <textarea matInput type="text" 
+      formControlName="description" placeholder="Category Description:">
+      </textarea>
+    </mat-form-field>
+    
+    <button mat-raised-button color="accent" class="form__btn" type="submit" [disabled]="!categoryForm.valid">Submit</button>
+
+  </form>
+</div>
+ 

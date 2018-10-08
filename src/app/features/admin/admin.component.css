@@ -1,0 +1,22 @@
+.container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+  }
+  
+.nav { 
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 20px;
+}
+h1 {
+    box-sizing: border-box;
+    font-weight: bold;
+    text-align: center;
+  }
+.nav button {
+    margin-top: 10px;
+}

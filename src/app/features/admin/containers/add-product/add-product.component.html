@@ -1,0 +1,35 @@
+<div class="form__container">
+  <form class="form__main" [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
+
+    <mat-form-field class="form__input">
+      <input matInput class="form-control" type="text" formControlName="title" placeholder="Product Title:">
+    </mat-form-field>
+
+    <mat-form-field class="form__textarea">
+      <textarea matInput class="form-control" type="text" formControlName="description"
+       placeholder="Product Description:">
+      </textarea>
+    </mat-form-field>
+
+    <mat-form-field class="form__input">
+      <input matInput class="form-control" type="text" formControlName="category_title" placeholder="Product Category Title:">
+    </mat-form-field>
+
+    <mat-form-field class="form__input">
+        <input matInput class="form-control" type="text" formControlName="thumbnail" placeholder="Product Thumbnail:">
+    </mat-form-field>
+
+    <mat-form-field class="form__input">
+        <input matInput class="form-control" type="number" formControlName="price" placeholder="Product Price:">
+    </mat-form-field>
+
+    <mat-form-field class="form__input">
+        <input matInput class="form-control" type="number" formControlName="stock" placeholder="Product Stock:">
+    </mat-form-field>
+  
+
+    <button mat-raised-button color="accent" class="form__btn" type="submit" [disabled]="!productForm.valid">Submit</button>
+
+  </form>
+  </div>
+  
