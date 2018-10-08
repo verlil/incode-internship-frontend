@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {  MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -11,6 +14,10 @@ import { MatListModule } from '@angular/material/list';
   imports: [
     CommonModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatCardModule,
     MatIconModule,
     FlexLayoutModule,
     MatCardModule,
@@ -20,6 +27,10 @@ import { MatListModule } from '@angular/material/list';
   exports: [
     CommonModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatCardModule,
     MatIconModule,
     FlexLayoutModule,
     MatCardModule,
