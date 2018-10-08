@@ -1,9 +1,7 @@
 import { ProductsService } from './products.service';
 import { CategoriesService } from './categories.service';
-import { FiltersService } from './filters.service';
 
-export const services: any[] = [ProductsService, CategoriesService, FiltersService];
+export const services: any[] = [ProductsService, CategoriesService];
 
 export * from './products.service';
 export * from './categories.service';
-export * from './filters.service';

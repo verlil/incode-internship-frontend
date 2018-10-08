@@ -28,7 +28,8 @@ export function reducer(
     case fromProducts.LOAD_PRODUCTS: {
       return {
         ...state,
-        loading: true
+        loading: true,
+        filters: action['payload']
       };
     }
     case fromProducts.LOAD_PRODUCTS_FAIL: {
@@ -57,6 +58,6 @@ export function reducer(
 
 export const getProducts: any = (state: ProductState): object => state.products;
 export const getProductsEntities: any = (state: ProductState): object => state.entities;
-export const getFilters: any = (state: ProductState): object => state.products;
+export const getFilters: any = (state: ProductState): object => state.filters;
 export const getProductsLoading: any = (state: ProductState): boolean => state.loading;
 export const getProductsLoaded: any = (state: ProductState): boolean => state.loaded;

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -15,33 +15,34 @@ export class ProductsService {
   }
 
   getProducts(filters?: Filter): Observable<{ success: boolean, products: Product[]}> {
-    const headers: HttpHeaders = new HttpHeaders({
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYjVjYzA1YmRlM2RmMWE5'
-        + 'N2MxYzE2NSIsImxvZ2luIjoidXNlciIsInBhc3N3b3JkIjoiJDJiJDEyJGZnSzFDYmNrajVwNWVWLjdZSG5qZXU5Qj'
-        + 'Fadi56Q29NZThDeTc5cmpGS3RHTE40a01kd3ZDIiwiaWF0IjoxNTM5MDAxNzE4LCJleHAiOjE1MzkwMDQ0MTh9.gLwiL'
-        + '_TF_b_T0GEbJJGkPfWU59cMvMg56ru-zLbFckM'
-    });
+    const query: string = this.generateQueryString(filters);
+
+    return this.http.get<{ success: boolean, products: Product[]}>(`${this.productUrl}${query}`);
+  }
+
+  private generateQueryString(filter: Filter): string {
     let query: string = '';
+    let and: string = '';
+    if (filter) {
+      query += '?';
+      if (filter.category_id) {
+        query += `${and}category=${filter.category_id}`;
+        and = '&';
+      }
 
-    const filtersCopy: Filter = { ...filters };
+      if (filter.stock) {
+        query += `${and}stock=${filter.stock}`;
+        and = '&';
+      }
 
-    // fixing 'null' fields
-    for (const key in filters) {
-      if (filters.hasOwnProperty(key)) {
-        if (!filters[key]) {
-          filtersCopy[key] = '';
-        }
+      if (filter.price_from || filter.price_to) {
+        const price_from: any = filter.price_from == null ? '' : filter.price_from;
+        const price_to: any = filter.price_to == null ? '' : filter.price_to;
+        query += `${and}price=${price_from}to${price_to}`;
       }
     }
 
-    // checking for 'undefined' filters
-    if (filters) {
-      query = '?price=' + filtersCopy.price_from + 'to' + filtersCopy.price_to
-        + '&stock=' + filtersCopy.stock
-        + '&category=' + filtersCopy.category_id;
-    }
-
-    return this.http.get<{ success: boolean, products: Product[]}>(this.productUrl + query, {headers});
+    return query;
   }
 
 }

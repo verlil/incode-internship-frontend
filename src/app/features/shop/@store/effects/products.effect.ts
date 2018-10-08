@@ -8,7 +8,6 @@ import { Action } from '@ngrx/store';
 import * as productActions from '../actions/products.actions';
 import * as fromServices from '../../services';
 import { Product } from '../../../../shared/models/product';
-import { Filter } from '../../models/filter';
 
 @Injectable()
 
@@ -26,14 +25,13 @@ export class ProductsEffect {
       return this.productService.getProducts(action['payload']).pipe(
       map ((response: { success: boolean, products: Product[] }) => {
           const products: Product[] = response['products'];
-        const filters: Filter = action['payload'];
-        const entities: { [key: string]: Product }  = {};
+          const entities: { [key: string]: Product }  = {};
 
           products.forEach((product: Product) => {
             entities[product.id] = product;
           });
 
-          return new productActions.LoadProductsSuccess({products, entities, filters});
+          return new productActions.LoadProductsSuccess({products, entities});
         }),
         catchError((error: Error) => of(new productActions.LoadProductsFail(error)))
       );

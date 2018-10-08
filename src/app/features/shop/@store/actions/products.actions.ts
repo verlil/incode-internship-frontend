@@ -24,7 +24,7 @@ export class LoadProductsFail implements Action {
 export class LoadProductsSuccess implements Action {
   readonly type: string = LOAD_PRODUCTS_SUCCESS;
 
-  constructor(public payload: {products: Product[], entities: {[key: string]: Product}, filters: Filter}) {
+  constructor(public payload: {products: Product[], entities: {[key: string]: Product}}) {
   }
 }
 

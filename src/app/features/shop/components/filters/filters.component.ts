@@ -29,8 +29,7 @@ export class FiltersComponent implements OnInit {
     this.filtersForm = this.createFormGroup();
     this.filtersForm.valueChanges.
     subscribe((form: object) => {
-      const filters: Filter = form['filtersData'];
-      this.filtersChanged$.emit(filters);
+      this.filtersChanged$.emit(form['filtersData']);
     });
   }
 
