@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'register', component: CoreComponent }, // should be RegisterComponent container instead
   { path: 'admin', loadChildren: 'src/app/features/admin/admin.module#AdminModule' },
   { path: 'shop', loadChildren: 'src/app/features/shop/shop.module#ShopModule' },
+  { path: 'wishlist', loadChildren: 'src/app/features/wishlist/wishlist.module#WishlistModule' },
   { path: '**',  redirectTo: 'login', pathMatch: 'full' },
 ];
 
