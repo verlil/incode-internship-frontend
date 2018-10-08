@@ -33,7 +33,7 @@ export class LoginEffects {
   loginSuccessEffect: Observable<any> = this.actions.pipe(
     ofType(LOGIN_SUCCESS),
     switchMap((action: LogInSuccess) => {
-      return this.service.getUserByToken(action.payload).pipe(
+      return this.service.getUserByToken().pipe(
         map((user: UserResponseModel) => ({ type: GET_USER_SUCCESS, payload: user })),
         catchError((error: any) => of({type: GET_USER_FAILED, payload: error}))
       );

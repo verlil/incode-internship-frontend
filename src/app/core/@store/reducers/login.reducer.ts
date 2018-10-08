@@ -7,6 +7,7 @@ export class LoginState {
   loaded: boolean;
   isAuthenticated: boolean;
   hasToken: boolean;
+  token: string;
 }
 
 export const initialState: LoginState = {
@@ -15,6 +16,7 @@ export const initialState: LoginState = {
   loaded: false,
   isAuthenticated: false,
   hasToken: false,
+  token: ''
 };
 
 export function loginReducer(state: LoginState = initialState, action: LoginActions): LoginState {
@@ -23,18 +25,21 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
       return {
         ...state,
         loading: true,
+        token: localStorage.getItem('token')
       };
     }
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        hasToken: true
+        hasToken: true,
+        token: localStorage.getItem('token')
       };
     }
     case LOGIN_FAILED: {
       return {
         ...state,
-        loading: false
+        loading: false,
+        token: localStorage.getItem('token')
       };
     }
     case GET_USER_SUCCESS: {
@@ -43,7 +48,8 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
         loading: false,
         loaded: true,
         isAuthenticated: true,
-        user: action.payload
+        user: action.payload,
+        token: localStorage.getItem('token')
       };
     }
     case GET_USER_FAILED: {
@@ -53,7 +59,8 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
         loaded: true,
         hasToken: false,
         isAuthenticated: false,
-        user: null
+        user: null,
+        token: localStorage.getItem('token')
       };
     }
     default: {

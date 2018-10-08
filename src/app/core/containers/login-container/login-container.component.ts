@@ -20,7 +20,7 @@ export class LoginContainerComponent {
     this.store.pipe(select(selectIsAuthenticated)).subscribe(
       (isLoaded: boolean) => {
         if (isLoaded) {
-          this.store.dispatch(new Go({path: ['admin']}));
+          this.store.dispatch(new Go({path: ['shop']}));
         }
       }
     );
