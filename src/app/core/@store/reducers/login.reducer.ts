@@ -14,7 +14,7 @@ export const initialState: LoginState = {
   loading: false,
   loaded: false,
   isAuthenticated: false,
-  hasToken: false,
+  hasToken: false
 };
 
 export function loginReducer(state: LoginState = initialState, action: LoginActions): LoginState {
@@ -28,13 +28,13 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        hasToken: true
+        hasToken: true,
       };
     }
     case LOGIN_FAILED: {
       return {
         ...state,
-        loading: false
+        loading: false,
       };
     }
     case GET_USER_SUCCESS: {
@@ -43,7 +43,7 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
         loading: false,
         loaded: true,
         isAuthenticated: true,
-        user: action.payload
+        user: action.payload,
       };
     }
     case GET_USER_FAILED: {
@@ -53,7 +53,7 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
         loaded: true,
         hasToken: false,
         isAuthenticated: false,
-        user: null
+        user: null,
       };
     }
     default: {

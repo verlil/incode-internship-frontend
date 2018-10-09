@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UserAuthModel } from '../../shared/models/UserAuthModel';
 import { Observable } from 'rxjs';
 import { LoginResponseModel } from '../../shared/models/LoginResponseModel';
@@ -18,9 +18,9 @@ export class LoginService {
     return this.http.post<LoginResponseModel>(`${environment.baseUrl}/login`, user);
   }
 
-  getUserByToken(token: string): Observable<UserResponseModel> {
+  getUserByToken(): Observable<UserResponseModel> {
     return this.http.get<UserResponseModel>(
-      `${environment.baseUrl}/user`, {headers: new HttpHeaders({'Authorization': `Bearer ${token}`})}
+      `${environment.baseUrl}/user`
       );
   }
 }

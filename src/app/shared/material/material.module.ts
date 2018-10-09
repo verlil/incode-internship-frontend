@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSidenavModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatCardModule,
     MatToolbarModule,
     MatListModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSidenavModule
   ],
   exports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatCardModule,
     MatToolbarModule,
     MatListModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSidenavModule
   ]
 })
 export class MaterialModule {
