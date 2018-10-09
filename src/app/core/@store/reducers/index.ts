@@ -8,3 +8,5 @@ export class CoreState {
 export const reducers: ActionReducerMap<CoreState> = {
   login: fromLogin.loginReducer
 };
+
+export * from './login.reducer';
