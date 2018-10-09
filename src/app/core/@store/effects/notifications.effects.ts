@@ -5,28 +5,28 @@ import { Effect, Actions } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { map, tap, delay } from 'rxjs/operators';
 
-import { SHOW_MESSAGE, SHOW_ERROR, ShowMessage, ShowError } from '../actions';
+import * as notificationActions from '../actions/notification.actions';
 
 @Injectable()
 export class NotificationsEffects {
   constructor(private actions: Actions, private snackbar: MatSnackBar) {
   }
-  @Effect()
+  @Effect({dispatch: false})
   showMessageEffect: Observable<any> = this.actions
-    .ofType(SHOW_MESSAGE)
+    .ofType(notificationActions.SHOW_MESSAGE)
     .pipe(
-      map((action: ShowMessage) => action.payload),
+      map((action: notificationActions.ShowMessage) => action.payload),
       tap((message: string) => this.snackbar.open(message, '', {panelClass: ['message-snackbar']})),
-      delay(2000),
+      delay(4000),
       map(() => this.snackbar.dismiss())
     );
-
+  @Effect({dispatch: false})
   showErrorEffect: Observable<any> = this.actions
-    .ofType(SHOW_ERROR)
+    .ofType(notificationActions.SHOW_ERROR)
     .pipe(
-      map((action: ShowError) => action.payload),
-      tap((error: string) => this.snackbar.open(error, '', {panelClass: ['error-snackbar']})),
-      delay(2000),
+      map((action: notificationActions.ShowError) => action.payload),
+      tap((errorObj: any) => this.snackbar.open(errorObj.message, '', {panelClass: ['error-snackbar']})),
+      delay(4000),
       map(() => this.snackbar.dismiss())
     );
 }

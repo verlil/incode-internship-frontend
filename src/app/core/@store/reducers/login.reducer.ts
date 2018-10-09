@@ -35,6 +35,7 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
       return {
         ...state,
         loading: false,
+        hasToken: false
       };
     }
     case GET_USER_SUCCESS: {

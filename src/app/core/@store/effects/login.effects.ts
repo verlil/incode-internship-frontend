@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 
 import { LoginService } from '../../services/login.service';
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED, GET_USER_SUCCESS, GET_USER_FAILED } from '../actions/login.actions';
-import { LogInAction, LogInSuccess } from '../actions/login.actions';
 import { UserResponseModel } from '../../../shared/models/UserResponseModel';
 import { LoginResponseModel } from '../../../shared/models/LoginResponseModel';
+
+import * as loginActions from '../actions/login.actions';
+import * as notificationActions from '../actions/notification.actions';
 
 @Injectable()
 export class LoginEffects {
@@ -19,24 +19,35 @@ export class LoginEffects {
   ) {}
   @Effect()
   logInEffect: Observable<any> = this.actions.pipe(
-    ofType(LOGIN),
-    switchMap((action: LogInAction) => this.service.logIn(action.payload).pipe(
+    ofType(loginActions.LOGIN),
+    switchMap((action: loginActions.LogInAction) => this.service.logIn(action.payload).pipe(
       map((data: LoginResponseModel) => {
         localStorage.setItem('token', data.token);
-
-        return { type: LOGIN_SUCCESS, payload: data.token };
+        return new loginActions.LogInSuccess(data.token);
       }),
-      catchError((error: any) => of({ type: LOGIN_FAILED, payload: error } ))
+      catchError((error: any) => [
+        new loginActions.LogInfailed(error),
+        new notificationActions.ShowError(error)
+      ])
     ))
   );
   @Effect()
   loginSuccessEffect: Observable<any> = this.actions.pipe(
-    ofType(LOGIN_SUCCESS),
-    switchMap((action: LogInSuccess) => {
+    ofType(loginActions.LOGIN_SUCCESS),
+    switchMap((action: loginActions.LogInSuccess) => {
       return this.service.getUserByToken().pipe(
-        map((user: UserResponseModel) => ({ type: GET_USER_SUCCESS, payload: user })),
-        catchError((error: any) => of({type: GET_USER_FAILED, payload: error}))
-      );
+        mergeMap((user: UserResponseModel) => {
+          return [
+            new loginActions.GetUserSuccess(user),
+            new notificationActions.ShowMessage('Successfully logged in')
+          ];
+        }),
+        catchError((error: any) => {
+          return [
+            new loginActions.GetUserFailed(error),
+            new notificationActions.ShowError(error)
+          ];
+        }));
     })
   );
 }

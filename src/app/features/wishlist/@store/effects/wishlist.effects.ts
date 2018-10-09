@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
 import * as wishlistActions from '../actions/wishlist.action';
+import * as notificationActions from '../../../../core/@store/actions';
 import * as fromServices from '../../services';
 import { WishList } from '../../models/wishlist';
 
@@ -24,7 +25,12 @@ export class WishlistEffects {
           map((response: {success: boolean; wishlist: WishList}) => {
             return new wishlistActions.LoadPWishlistSuccess(response.wishlist);
           }),
-          catchError((error: any) => of(new wishlistActions.LoadWishlistFail(error)))
+          catchError((error: any) => {
+            return [
+              new wishlistActions.LoadWishlistFail(error),
+              new notificationActions.ShowError(error)
+            ];
+          })
         );
     })
 );

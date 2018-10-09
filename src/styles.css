@@ -2,7 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .message-snackbar {
-  color: green;
+  color: white;
 }
 
 .error-snackbar {
