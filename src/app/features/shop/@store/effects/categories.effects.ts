@@ -5,6 +5,7 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import * as categoriesActions from '../actions/categories.actions';
+import * as notificationActions from '../../../../core/@store/actions';
 import * as fromServices from '../../services';
 import { Category } from '../../../../shared/models/category';
 
@@ -32,7 +33,12 @@ export class CategoriesEffect {
 
           return new categoriesActions.LoadCategoriesSuccess({categories, entities});
         }),
-        catchError((error: Error) => of(new categoriesActions.LoadCategoriesFail(error)))
+        catchError((error: Error) => {
+          return [
+            new categoriesActions.LoadCategoriesFail(error),
+            new notificationActions.ShowError(error.message)
+          ];
+        })
       );
     })
   );

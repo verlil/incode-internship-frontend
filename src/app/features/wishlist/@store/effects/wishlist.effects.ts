@@ -28,7 +28,7 @@ export class WishlistEffects {
           catchError((error: any) => {
             return [
               new wishlistActions.LoadWishlistFail(error),
-              new notificationActions.ShowError(error)
+              new notificationActions.ShowError(error.message)
             ];
           })
         );

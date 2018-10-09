@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import {catchError, mergeMap, switchMap} from 'rxjs/operators';
+import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 
 import * as categoryActions from '../actions/categories.action';
 import * as fromServices from '../../services';
@@ -33,7 +33,7 @@ export class CategoriesEffect {
         catchError((error: Error) => {
           return [
             new categoryActions.AddCategoryFail(error),
-            new notificationActions.ShowError(error)
+            new notificationActions.ShowError(error.message)
           ];
         })
       );

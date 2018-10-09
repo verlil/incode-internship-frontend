@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
-import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 
 import { LoginService } from '../../services/login.service';
 import * as fromActions from '../actions/login.actions';
@@ -27,7 +27,7 @@ export class LoginEffects {
       }),
       catchError((error: any) => [
         new fromActions.LogInfailed(error),
-        new notificationActions.ShowError(error)
+        new notificationActions.ShowError(error.message)
       ])
     ))
   );
@@ -45,7 +45,7 @@ export class LoginEffects {
         catchError((error: any) => {
           return [
             new fromActions.GetUserFailed(error),
-            new notificationActions.ShowError(error)
+            new notificationActions.ShowError(error.message)
           ];
         }));
     })

@@ -5,6 +5,7 @@ export const LOGIN_SUCCESS: string = '[Login] Login Success';
 export const LOGIN_FAILED: string = '[Login] Login Failed';
 export const GET_USER_SUCCESS: string = '[Login] Get User Success';
 export const GET_USER_FAILED: string = '[Login] Get User Failed';
+export const LOGOUT: string = '[Login] Logout';
 
 export class LogInAction implements Action {
   readonly type: string = LOGIN;
@@ -31,9 +32,17 @@ export class GetUserFailed implements Action {
   constructor(public payload: any) {}
 }
 
+export class LogOutAction implements Action {
+  readonly type: string = LOGOUT;
+  constructor() {
+    //
+  }
+}
+
 export type LoginActions =
   | LogInAction
   | LogInSuccess
   | LogInfailed
   | GetUserSuccess
-  | GetUserFailed;
+  | GetUserFailed
+  | LogOutAction;

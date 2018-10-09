@@ -33,7 +33,7 @@ export class ProductsEffect {
         catchError((error: Error) => {
           return [
             new productActions.AddProductFail(error),
-            new notificationActions.ShowError(error)
+            new notificationActions.ShowError(error.message)
           ];
         })
       );

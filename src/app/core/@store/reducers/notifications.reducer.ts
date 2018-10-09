@@ -23,7 +23,7 @@ export function notificationReducer(
     case SHOW_ERROR:
       return {
         ...state,
-        lastError: action.payload.message
+        lastError: action.payload
       };
     default:
       return state;

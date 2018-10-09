@@ -25,8 +25,12 @@ import { MatSnackBarModule } from '@angular/material';
     MatToolbarModule,
     MatListModule,
     MatRadioModule,
+<<<<<<< HEAD
     MatSidenavModule,
     MatSnackBarModule,
+=======
+    MatSidenavModule
+>>>>>>> 6ee8d6159971d644b294d28873bd5c3df18efe48
   ],
   exports: [
     CommonModule,

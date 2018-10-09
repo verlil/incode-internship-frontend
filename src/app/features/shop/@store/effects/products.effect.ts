@@ -36,7 +36,7 @@ export class ProductsEffect {
         catchError((error: Error) => {
           return [
             new productActions.LoadProductsFail(error),
-            new notificationsActions.ShowError(error)
+            new notificationsActions.ShowError(error.message)
           ];
         })
       );
