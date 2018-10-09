@@ -1,4 +1,4 @@
-import * as fromActions from '../actions/login.actions';
+import {LoginActions, LOGIN, LOGIN_SUCCESS, LOGIN_FAILED, GET_USER_SUCCESS, GET_USER_FAILED} from '../actions/login.actions';
 import {UserAuthModel} from '../../../shared/models/UserAuthModel';
 
 export class LoginState {
@@ -17,50 +17,40 @@ export const initialState: LoginState = {
   hasToken: false
 };
 
-export function loginReducer(state: LoginState = initialState, action: fromActions.LoginActions): LoginState {
+export function loginReducer(state: LoginState = initialState, action: LoginActions): LoginState {
   switch (action.type) {
-    case fromActions.LOGIN: {
+    case LOGIN: {
       return {
         ...state,
         loading: true,
       };
     }
-    case fromActions.LOGIN_SUCCESS: {
+    case LOGIN_SUCCESS: {
       return {
         ...state,
         hasToken: true,
       };
     }
-    case fromActions.LOGIN_FAILED: {
+    case LOGIN_FAILED: {
       return {
         ...state,
         loading: false,
       };
     }
-    case fromActions.GET_USER_SUCCESS: {
+    case GET_USER_SUCCESS: {
       return {
         ...state,
         loading: false,
         loaded: true,
         isAuthenticated: true,
-        user: action['payload'],
+        user: action.payload,
       };
     }
-    case fromActions.GET_USER_FAILED: {
+    case GET_USER_FAILED: {
       return {
         ...state,
         loading: false,
         loaded: true,
-        hasToken: false,
-        isAuthenticated: false,
-        user: null,
-      };
-    }
-    case fromActions.LOGOUT: {
-      return {
-        ...state,
-        loading: false,
-        loaded: false,
         hasToken: false,
         isAuthenticated: false,
         user: null,
