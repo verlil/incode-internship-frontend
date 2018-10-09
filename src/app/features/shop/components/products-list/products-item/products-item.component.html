@@ -9,8 +9,12 @@
     <div>{{ product.title }}</div>
     <div>{{ product.price }}</div>
     <div>
-      <mat-icon class="product-action-icon">favorite</mat-icon>
-      <mat-icon class="product-action-icon">add_shopping_cart</mat-icon>
+      <button mat-icon-button>
+        <mat-icon aria-label="Add to wish list">favorite</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon aria-label="Add to cart" (click)="onAddToCart()">add_shopping_cart</mat-icon>
+      </button>
     </div>
   </mat-card-content>
 </mat-card>
