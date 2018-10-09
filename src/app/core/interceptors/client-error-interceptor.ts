@@ -22,6 +22,7 @@ export class ClientErrorInterceptor implements HttpInterceptor {
             catchError((error: any) => {
                 if (error instanceof HttpErrorResponse && (error.status === 401 || error.status === 403)) {
                     localStorage.clear();
+                    this.store.dispatch(new LogOutAction());
                 }
 
                 return of(error);
