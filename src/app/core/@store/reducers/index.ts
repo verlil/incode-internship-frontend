@@ -11,3 +11,5 @@ export const reducers: ActionReducerMap<CoreState> = {
   login: fromLogin.loginReducer,
   notifications: fromNotifications.notificationReducer
 };
+
+export * from './login.reducer';
