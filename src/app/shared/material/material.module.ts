@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MatSidenavModule } from '@angular/material';
     MatCardModule,
     MatToolbarModule,
     MatListModule,
+    MatRadioModule,
     MatSidenavModule
   ],
   exports: [
@@ -35,6 +37,7 @@ import { MatSidenavModule } from '@angular/material';
     MatCardModule,
     MatToolbarModule,
     MatListModule,
+    MatRadioModule,
     MatSidenavModule
   ]
 })

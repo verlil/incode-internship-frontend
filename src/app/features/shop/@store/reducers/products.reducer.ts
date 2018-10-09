@@ -1,9 +1,11 @@
 import * as fromProducts from '../actions/products.actions';
 import { Product } from '../../../../shared/models/product';
+import { Filter } from '../../models/filter';
 
 export interface ProductState {
   products: Product[];
   entities: {[id: string]: Product};
+  filters: Filter;
   loaded: boolean;
   loading: boolean;
 }
@@ -11,6 +13,7 @@ export interface ProductState {
 export const initialState: ProductState = {
   products: [],
   entities: {},
+  filters: new Filter(),
   loaded: false,
   loading: false,
 };
@@ -25,7 +28,8 @@ export function reducer(
     case fromProducts.LOAD_PRODUCTS: {
       return {
         ...state,
-        loading: true
+        loading: true,
+        filters: action['payload']
       };
     }
     case fromProducts.LOAD_PRODUCTS_FAIL: {
@@ -54,5 +58,6 @@ export function reducer(
 
 export const getProducts: any = (state: ProductState): object => state.products;
 export const getProductsEntities: any = (state: ProductState): object => state.entities;
+export const getFilters: any = (state: ProductState): object => state.filters;
 export const getProductsLoading: any = (state: ProductState): boolean => state.loading;
 export const getProductsLoaded: any = (state: ProductState): boolean => state.loaded;

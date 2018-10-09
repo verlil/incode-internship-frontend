@@ -28,10 +28,10 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     AppComponent
   ],
   imports: [
-    SharedModule,
     BrowserModule,
-    HttpClientModule,
     BrowserAnimationsModule,
+    SharedModule,
+    HttpClientModule,
     CoreModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),

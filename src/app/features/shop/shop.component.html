@@ -1,13 +1,16 @@
 <div fxLayout="row">
 
   <app-filters
-    fxFlex="30"
-  ></app-filters>
+    [categories$]="categories$"
+    (filtersChanged$)="onFiltersChanged($event)"
+    fxFlex="30">
+  </app-filters>
 
   <app-products-list
     [products$]="products$"
-    fxFlex="70"
-  ></app-products-list>
+    fxFlex="70">
+  </app-products-list>
 
 </div>
+
 

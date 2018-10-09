@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
+import { Action } from '@ngrx/store';
 
 import * as productActions from '../actions/products.actions';
 import * as fromServices from '../../services';
@@ -19,9 +20,9 @@ export class ProductsEffect {
   @Effect()
   loadProducts$: Observable<productActions.ProductsAction> = this.actions$.pipe(
     ofType(productActions.LOAD_PRODUCTS),
-    switchMap(() => {
+    switchMap((action: Action) => {
 
-      return this.productService.getProducts().pipe(
+      return this.productService.getProducts(action['payload']).pipe(
       map ((response: { success: boolean, products: Product[] }) => {
           const products: Product[] = response['products'];
           const entities: { [key: string]: Product }  = {};
