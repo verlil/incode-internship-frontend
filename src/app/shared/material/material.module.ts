@@ -24,7 +24,6 @@ import { MatSidenavModule } from '@angular/material';
     MatToolbarModule,
     MatListModule,
     MatRadioModule,
-    MatSidenavModule
   ],
   exports: [
     CommonModule,
