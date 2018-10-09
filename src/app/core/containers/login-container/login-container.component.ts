@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
 
-import { LogInAction, LogOutAction } from '../../@store/actions/login.actions';
+import { LogInAction } from '../../@store/actions/login.actions';
 import { selectIsAuthenticated } from '../../@store/selectors/login.selectors';
 import { UserAuthModel } from '../../../shared/models/UserAuthModel';
 import { State } from '../../../@store/reducers';
