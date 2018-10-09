@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
+import {catchError, map, switchMap} from 'rxjs/operators';
 
 import * as productActions from '../actions/products.actions';
 import * as notificationsActions from '../../../../core/@store/actions';

@@ -23,6 +23,7 @@ export class LoginEffects {
     switchMap((action: loginActions.LogInAction) => this.service.logIn(action.payload).pipe(
       map((data: LoginResponseModel) => {
         localStorage.setItem('token', data.token);
+
         return new loginActions.LogInSuccess(data.token);
       }),
       catchError((error: any) => [
