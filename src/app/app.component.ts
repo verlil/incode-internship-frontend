@@ -12,7 +12,6 @@ import * as coreStore from './core/@store';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'incode-internship-frontend';
   token: string = localStorage.getItem('token');
   isLoaded$: Observable<boolean>;
 
