@@ -1,3 +1,49 @@
-<p>
-  filters works!
-</p>
+<form [formGroup]="filtersForm">
+  <div formGroupName="filtersData" fxLayout='column'>
+
+    <section class="price-section">
+      <mat-form-field class="price-input">
+        <input
+          matInput
+          type="number"
+          min="0"
+          formControlName="price_from"
+          placeholder="Minimum price">
+      </mat-form-field>
+      <mat-form-field class="price-input">
+        <input
+          matInput
+          type="number"
+          min="0"
+          formControlName="price_to"
+          placeholder="Maximum price">
+      </mat-form-field>
+    </section>
+
+    <section class="stock-section">
+      <mat-form-field class="stock-input">
+        <input
+          matInput
+          type="number"
+          min="0"
+          formControlName="stock"
+          placeholder="Minimum stock">
+      </mat-form-field>
+    </section>
+
+    <section class="category-section">
+      <mat-list>
+        <mat-radio-group formControlName="category_id">
+          <mat-list-item
+            *ngFor="let category of (categories$ | async ); let i = index">
+            <mat-radio-button [value]="category.id">
+              {{category.title}}
+            </mat-radio-button>
+          </mat-list-item>
+        </mat-radio-group>
+      </mat-list>
+    </section>
+
+  </div>
+</form>
+

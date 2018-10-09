@@ -1,25 +1,48 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
+import { environment } from '../../../../environments/environment';
 import { Product } from '../../../shared/models/product';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Filter } from '../models/filter';
 
 @Injectable()
 export class ProductsService {
+  private productUrl: string = `${environment.baseUrl}/products`;
 
   constructor(private http: HttpClient) {
   }
 
-  getProducts(): Observable<{ success: boolean, products: Product[] }> {
-    const headers: HttpHeaders = new HttpHeaders({
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYjVjYzA1'
-        + 'YmRlM2RmMWE5N2MxYzE2NSIsImxvZ2luIjoidXNlciIsInBhc3N3b3JkIjoiJDJiJDEyJGZnSzFDYmN'
-        + 'rajVwNWVWLjdZSG5qZXU5QjFadi56Q29NZThDeTc5cmpGS3RHTE40a01kd3ZDIiwiaWF0IjoxNTM4Nz'
-        + 'E5NDY3LCJleHAiOjE1Mzg3MjIxNjd9.WbSSa4yHa8rdjWaDmMGJfC25_maSl9g20qDgmo9lEbU'
-    });
+  getProducts(filters?: Filter): Observable<{ success: boolean, products: Product[]}> {
+    const query: string = this.generateQueryString(filters);
 
-    return this.http.get<{ success: boolean, products: Product[] }>(`http://localhost:8000/products`, {headers});
+    return this.http.get<{ success: boolean, products: Product[]}>(`${this.productUrl}${query}`);
+  }
+
+  private generateQueryString(filter: Filter): string {
+    let query: string = '';
+    let and: string = '';
+    if (filter) {
+      query += '?';
+      if (filter.category_id) {
+        query += `${and}category=${filter.category_id}`;
+        and = '&';
+      }
+
+      if (filter.stock) {
+        query += `${and}stock=${filter.stock}`;
+        and = '&';
+      }
+
+      if (filter.price_from || filter.price_to) {
+        const price_from: any = filter.price_from == null ? '' : filter.price_from;
+        const price_to: any = filter.price_to == null ? '' : filter.price_to;
+        query += `${and}price=${price_from}to${price_to}`;
+      }
+    }
+
+    return query;
   }
 
 }
