@@ -17,7 +17,6 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { TokenInterceptor } from './core/interceptors';
-import { ClientErrorInterceptor } from './core/interceptors';
 
 export const metaReducers: MetaReducer<any>[] = !environment.production
   ? [storeFreeze]
@@ -43,7 +42,6 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ClientErrorInterceptor, multi: true },
     { provide: RouterStateSerializer, useClass: CustomSerializer }
   ],
   bootstrap: [AppComponent]
