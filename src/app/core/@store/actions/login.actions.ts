@@ -34,7 +34,9 @@ export class GetUserFailed implements Action {
 
 export class LogOutAction implements Action {
   readonly type: string = LOGOUT;
-  constructor(public payload: any) {}
+  constructor() {
+    //
+  }
 }
 
 export type LoginActions =
