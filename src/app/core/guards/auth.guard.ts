@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 import * as coreStore from '../@store';
+import * as rootStore from '../../@store';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,13 @@ export class AuthGuard implements CanActivate {
     constructor(private store: Store<State>) {
       this.isAuthenticated$ = this.store.pipe(select(coreStore.selectLoginState)).pipe(
         filter((state: coreStore.LoginState) => state.loaded),
-        map((state: coreStore.LoginState) => state.isAuthenticated)
+        map((state: coreStore.LoginState) => {
+          if (!state.isAuthenticated) {
+            this.store.dispatch(new rootStore.Go({path: ['login']}));
+          }
+
+          return state.isAuthenticated;
+        })
       );
     }
 

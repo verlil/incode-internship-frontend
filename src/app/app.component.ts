@@ -14,10 +14,10 @@ import * as coreStore from './core/@store';
 export class AppComponent {
   title: string = 'incode-internship-frontend';
   token: string = localStorage.getItem('token');
-  isAuthenticated$: Observable<boolean>;
+  isLoaded$: Observable<boolean>;
 
   constructor (private store: Store<State>) {
     this.store.dispatch(new coreStore.LogInSuccess(this.token));
-    this.isAuthenticated$ = this.store.pipe(select(coreStore.selectLoginState));
+    this.isLoaded$ = this.store.pipe(select(coreStore.selectLoaded));
   }
 }

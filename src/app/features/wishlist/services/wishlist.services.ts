@@ -12,7 +12,6 @@ export class WishlistService {
   constructor(private http: HttpClient) {}
 
   getWishList(): Observable<{success: boolean; wishlist: WishList}> {
-
     const id: string = '5bb72709cf340815b5bcbc36';
 
     return this.http.get<{success: boolean; wishlist: WishList}>
