@@ -5,10 +5,9 @@ import { Observable } from 'rxjs';
 import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 
 import { LoginService } from '../../services/login.service';
+import * as fromActions from '../actions/login.actions';
 import { UserResponseModel } from '../../../shared/models/UserResponseModel';
 import { LoginResponseModel } from '../../../shared/models/LoginResponseModel';
-
-import * as loginActions from '../actions/login.actions';
 import * as notificationActions from '../actions/notification.actions';
 
 @Injectable()
@@ -19,33 +18,33 @@ export class LoginEffects {
   ) {}
   @Effect()
   logInEffect: Observable<any> = this.actions.pipe(
-    ofType(loginActions.LOGIN),
-    switchMap((action: loginActions.LogInAction) => this.service.logIn(action.payload).pipe(
+    ofType(fromActions.LOGIN),
+    switchMap((action: fromActions.LogInAction) => this.service.logIn(action.payload).pipe(
       map((data: LoginResponseModel) => {
         localStorage.setItem('token', data.token);
 
-        return new loginActions.LogInSuccess(data.token);
+        return new fromActions.LogInSuccess(data.token);
       }),
       catchError((error: any) => [
-        new loginActions.LogInfailed(error),
+        new fromActions.LogInfailed(error),
         new notificationActions.ShowError(error)
       ])
     ))
   );
   @Effect()
   loginSuccessEffect: Observable<any> = this.actions.pipe(
-    ofType(loginActions.LOGIN_SUCCESS),
-    switchMap((action: loginActions.LogInSuccess) => {
+    ofType(fromActions.LOGIN_SUCCESS),
+    switchMap((action: fromActions.LogInSuccess) => {
       return this.service.getUserByToken().pipe(
         mergeMap((user: UserResponseModel) => {
           return [
-            new loginActions.GetUserSuccess(user),
+            new fromActions.GetUserSuccess(user),
             new notificationActions.ShowMessage('Successfully logged in')
           ];
         }),
         catchError((error: any) => {
           return [
-            new loginActions.GetUserFailed(error),
+            new fromActions.GetUserFailed(error),
             new notificationActions.ShowError(error)
           ];
         }));
