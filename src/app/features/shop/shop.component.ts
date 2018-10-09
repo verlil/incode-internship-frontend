@@ -5,6 +5,9 @@ import { Store, select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 
 import * as fromStore from './@store';
+import { Category } from '../../shared/models/category';
+import { Product } from '../../shared/models/product';
+import { Filter } from './models/filter';
 
 @Component({
   selector: 'app-shop',
@@ -12,14 +15,18 @@ import * as fromStore from './@store';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  products$: Observable<object>;
+  products$: Observable<Product[]>;
   productsLoaded$: Observable<{}>;
+
+  categories$: Observable<Category[]>;
+  categoriesLoaded$: Observable<{}>;
 
   constructor(private store: Store<fromStore.ShopState>) {
   }
 
   ngOnInit(): void {
 
+    // loading products
     this.products$ = this.store.pipe(select(fromStore.getAllProducts));
     this.productsLoaded$ = this.store.pipe(select(fromStore.getProductsLoaded));
     this.productsLoaded$.pipe(
@@ -31,5 +38,23 @@ export class ShopComponent implements OnInit {
     ).subscribe((loaded: boolean) => {
       this.store.dispatch(new fromStore.LoadProducts());
     });
+
+    // loading categories
+    this.categories$ = this.store.pipe(select(fromStore.getAllCategories));
+    this.categoriesLoaded$ = this.store.pipe(select(fromStore.getCategoriesLoaded));
+    this.categoriesLoaded$.pipe(
+      filter((loaded: boolean) => {
+        if (!loaded) {
+          return !loaded;
+        }
+      })
+    ).subscribe((loaded: boolean) => {
+      this.store.dispatch(new fromStore.LoadCategories());
+    });
+
+  }
+
+  onFiltersChanged(filters: Filter): void {
+    this.store.dispatch(new fromStore.LoadProducts(filters));
   }
 }
