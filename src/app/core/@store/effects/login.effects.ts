@@ -4,18 +4,22 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { LoginService } from '../../services/login.service';
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED, GET_USER_SUCCESS, GET_USER_FAILED } from '../actions/login.actions';
-import { LogInAction, LogInSuccess } from '../actions/login.actions';
+import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED, GET_USER_SUCCESS, GET_USER_FAILED, LOGOUT } from '../actions/login.actions';
+import { LogInAction, LogInSuccess, LogOutAction } from '../actions/login.actions';
 import { UserResponseModel } from '../../../shared/models/UserResponseModel';
 import { LoginResponseModel } from '../../../shared/models/LoginResponseModel';
+import { State } from '../../../@store/reducers/';
+import { Go } from '../../../@store/actions/router.action';
 
 @Injectable()
 export class LoginEffects {
   constructor(
     private actions: Actions,
     private service: LoginService,
+    private store: Store <State>
   ) {}
   @Effect()
   logInEffect: Observable<any> = this.actions.pipe(
@@ -39,4 +43,11 @@ export class LoginEffects {
       );
     })
   );
-}
+  @Effect()
+  logOutEffect: Observable<any> = this.actions.pipe(
+    ofType(LOGOUT),
+    map((action: LogOutAction) => {
+      return new Go({path: ['login']});
+    })
+  );
+  }
