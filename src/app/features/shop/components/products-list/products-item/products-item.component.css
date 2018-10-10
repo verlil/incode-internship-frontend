@@ -1,3 +1,59 @@
-.product-image{
+.list-product {
+  margin: 5px;
+}
+
+.list-product-image-wrapper {
+  display: inline-block;
+  width: 100px;
+}
+
+.list-product-image {
+  display: block;
+  margin: auto;
+  width: auto;
   height: 75px;
+}
+
+.list-product-content {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.list-product-title {
+  margin-left: 5px;
+  display: inline-block;
+}
+
+.list-product-price {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.list-product-actions {
+  display: inline-block;
+  float: right;
+}
+
+.grid-product {
+  display: inline-block;
+  width: 200px;
+  height: 350px;
+  margin: 5px;
+}
+
+.grid-product-image {
+  display: block;
+  width: auto;
+  height: 200px;
+  margin: auto;
+}
+
+.grid-product-title {
+  text-align: center;
+  font-size: 1.5em;
+  height: 2em;
+}
+
+.grid-product-price {
+  text-align: center;
 }

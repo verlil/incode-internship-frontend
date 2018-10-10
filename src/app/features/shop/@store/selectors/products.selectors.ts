@@ -19,3 +19,4 @@ export const getFilters: MemoizedSelector<object, Filter> = createSelector(getPr
 export const getProductsEntities: MemoizedSelector<object, {}> = createSelector(getProductsState, fromProducts.getProductsEntities);
 export const getProductsLoaded: MemoizedSelector<object, {}> = createSelector(getProductsState, fromProducts.getProductsLoaded);
 export const getProductsLoading: MemoizedSelector<object, {}> = createSelector(getProductsState, fromProducts.getProductsLoading);
+export const getViewMode: MemoizedSelector<object, string> = createSelector(getProductsState, fromProducts.getViewMode);

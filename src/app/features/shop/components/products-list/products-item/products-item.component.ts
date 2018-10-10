@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../../../../shared/models/product';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products-item',
@@ -8,6 +9,7 @@ import { Product } from '../../../../../shared/models/product';
 })
 export class ProductsItemComponent {
   @Input() product: Product;
+  @Input() viewMode$: Observable<string>;
   @Output() addToCart: EventEmitter<Product> = new EventEmitter<Product>();
 
   onAddToCart(): void {

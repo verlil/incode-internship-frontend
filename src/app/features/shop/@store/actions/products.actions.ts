@@ -6,6 +6,7 @@ import { Filter } from '../../models/filter';
 export const LOAD_PRODUCTS: string = '[Shop] Load Products';
 export const LOAD_PRODUCTS_FAIL: string = '[Shop] Load Products Fail';
 export const LOAD_PRODUCTS_SUCCESS: string = '[Shop] Load Products Success';
+export const CHANGE_VIEW_MODE: string = '[Shop] Change View Mode';
 
 export class LoadProducts implements Action {
   readonly type: string = LOAD_PRODUCTS;
@@ -28,5 +29,12 @@ export class LoadProductsSuccess implements Action {
   }
 }
 
+export class ChangeViewMode implements Action {
+  readonly type: string = CHANGE_VIEW_MODE;
+
+  constructor(public payload: string) {
+  }
+}
+
 // action types
-export type ProductsAction = LoadProducts | LoadProductsFail | LoadProductsSuccess ;
+export type ProductsAction = LoadProducts | LoadProductsFail | LoadProductsSuccess | ChangeViewMode;
