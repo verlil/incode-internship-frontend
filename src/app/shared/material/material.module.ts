@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -24,6 +25,12 @@ import { MatSidenavModule } from '@angular/material';
     MatToolbarModule,
     MatListModule,
     MatRadioModule,
+<<<<<<< HEAD
+    MatSidenavModule,
+    MatSnackBarModule,
+=======
+    MatSidenavModule
+>>>>>>> 6ee8d6159971d644b294d28873bd5c3df18efe48
   ],
   exports: [
     CommonModule,
@@ -36,6 +43,7 @@ import { MatSidenavModule } from '@angular/material';
     MatCardModule,
     MatToolbarModule,
     MatListModule,
+    MatSnackBarModule,
     MatRadioModule,
     MatSidenavModule
   ]
