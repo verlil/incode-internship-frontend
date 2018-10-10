@@ -19,10 +19,8 @@ export class ProductPageComponent  implements OnInit  {
   }
 
   ngOnInit(): void {
-    this.product$ = this.store.select(fromStore.getSelectedProduct);
-    this.product$.subscribe((product) => {
-      console.log(product);
-    });
+    this.product$ = this.store.pipe(select(fromStore.getSelectedProduct));
+
   }
 
   onAddToCart(product: Product): void {
