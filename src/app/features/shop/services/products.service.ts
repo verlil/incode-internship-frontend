@@ -23,6 +23,7 @@ export class ProductsService {
   private generateQueryString(filter: Filter): string {
     let query: string = '';
     let and: string = '';
+
     if (filter) {
       query += '?';
       if (filter.category_id) {

@@ -14,7 +14,7 @@ export const initialState: LoginState = {
   loading: false,
   loaded: false,
   isAuthenticated: false,
-  hasToken: false
+  hasToken: false,
 };
 
 export function loginReducer(state: LoginState = initialState, action: fromActions.LoginActions): LoginState {
@@ -28,7 +28,7 @@ export function loginReducer(state: LoginState = initialState, action: fromActio
     case fromActions.LOGIN_SUCCESS: {
       return {
         ...state,
-        hasToken: true,
+        hasToken: true
       };
     }
     case fromActions.LOGIN_FAILED: {
@@ -44,7 +44,7 @@ export function loginReducer(state: LoginState = initialState, action: fromActio
         loading: false,
         loaded: true,
         isAuthenticated: true,
-        user: action['payload'],
+        user: action['payload']
       };
     }
     case fromActions.GET_USER_FAILED: {
@@ -54,7 +54,7 @@ export function loginReducer(state: LoginState = initialState, action: fromActio
         loaded: true,
         hasToken: false,
         isAuthenticated: false,
-        user: null,
+        user: null
       };
     }
     case fromActions.LOGOUT: {

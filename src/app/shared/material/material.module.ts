@@ -18,34 +18,28 @@ import { MatSnackBarModule } from '@angular/material';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule,
     MatIconModule,
     FlexLayoutModule,
     MatCardModule,
     MatToolbarModule,
     MatListModule,
     MatRadioModule,
-<<<<<<< HEAD
     MatSidenavModule,
-    MatSnackBarModule,
-=======
-    MatSidenavModule
->>>>>>> 6ee8d6159971d644b294d28873bd5c3df18efe48
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule,
     MatIconModule,
     FlexLayoutModule,
     MatCardModule,
     MatToolbarModule,
     MatListModule,
-    MatSnackBarModule,
     MatRadioModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule {

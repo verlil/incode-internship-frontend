@@ -8,6 +8,7 @@
 
   <app-products-list
     [products$]="products$"
+    (addToCart)="onAddToCart($event)"
     fxFlex="70">
   </app-products-list>
 
