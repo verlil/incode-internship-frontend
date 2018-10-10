@@ -22,6 +22,12 @@ export function reducer(
 
     case fromCart.ADD_PRODUCT_TO_CART: {
       const cartItem: CartItem = new CartItem(action['payload']);
+      let price: number = 0;
+
+      // checking for not null price
+      if (action['payload']['price']) {
+        price = action['payload']['price'];
+      }
 
       // checking if product is unique in cart
       if (state['entities'].hasOwnProperty(action['payload']['id'])) {
@@ -29,7 +35,7 @@ export function reducer(
         const quantity: number = state['entities'][action['payload']['id']]['quantity'];
 
         if (quantity < stock) {
-          cartItem.sum = action['payload']['price'] + state['entities'][action['payload']['id']]['product']['price'];
+          cartItem.sum = price + state['entities'][action['payload']['id']]['product']['price'];
           cartItem.quantity = quantity + 1;
 
           // product not unique in cart
@@ -37,7 +43,7 @@ export function reducer(
             ...state,
             entities: {...state.entities, [action['payload']['id']]: cartItem},
             total_quantity: state.total_quantity + 1,
-            total_sum: state.total_sum + action['payload']['price']
+            total_sum: state.total_sum + price
           };
         }
 
@@ -53,7 +59,7 @@ export function reducer(
           ...state,
           entities: {...state.entities, [action['payload']['id']]: cartItem},
           total_quantity: state.total_quantity + 1,
-          total_sum: state.total_sum + action['payload']['price']
+          total_sum: state.total_sum + price
         };
       }
 
