@@ -12,10 +12,13 @@ import { reducers, effects } from './@store';
 
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
+import { HeaderComponent } from './containers/header/header.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    AppRoutingModule,
     SharedModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -23,7 +26,7 @@ import * as fromComponents from './components';
     EffectsModule.forFeature(effects),
 
   ],
-  declarations: [CoreComponent, ...fromContainers.containers, fromComponents.components],
+  declarations: [CoreComponent, ...fromContainers.containers, fromComponents.components, HeaderComponent],
   exports: [...fromContainers.containers, fromComponents.components]
 })
 export class CoreModule { }
