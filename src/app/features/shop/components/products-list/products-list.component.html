@@ -1,7 +1,11 @@
 <mat-toolbar color="primary" class="list-header">
   <mat-toolbar-row fxLayoutAlign="end center">
-    <mat-icon class="example-icon">view_list</mat-icon>
-    <mat-icon class="example-icon">view_module</mat-icon>
+    <button mat-icon-button>
+      <mat-icon aria-label="List view" (click)="onChangeView('list')">view_list</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon aria-label="Grid view" (click)="onChangeView('grid')">view_module</mat-icon>
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -14,5 +18,6 @@
 <app-products-item
   *ngFor="let product of (products$ | async)"
   [product]="product"
+  [viewMode$]="viewMode$"
   (addToCart)="onAddToCart($event)">
 </app-products-item>

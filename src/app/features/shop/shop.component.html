@@ -8,7 +8,9 @@
 
   <app-products-list
     [products$]="products$"
+    [viewMode$]="viewMode$"
     (addToCart)="onAddToCart($event)"
+    (changeView)="onViewChanged($event)"
     fxFlex="70">
   </app-products-list>
 

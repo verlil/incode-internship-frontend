@@ -1,21 +1,44 @@
-<mat-card>
-  <mat-card-content fxLayout="row" fxLayoutAlign="space-between center">
-    <div>
-      <img
-        class="product-image"
-        [src]="product.thumbnail"
-        [alt]="product.title">
-    </div>
-    <div>{{ product.title }}</div>
-    <div>{{ product.price }}</div>
-    <div>
-      <button mat-icon-button>
-        <mat-icon aria-label="Add to wish list">favorite</mat-icon>
-      </button>
-      <button mat-icon-button>
-        <mat-icon aria-label="Add to cart" (click)="onAddToCart()">add_shopping_cart</mat-icon>
-      </button>
-    </div>
+<mat-card *ngIf="(viewMode$ | async) === 'list'" class="list-product">
+  <div class="list-product-image-wrapper">
+    <img
+      class="list-product-image"
+      [src]="product.thumbnail"
+      [alt]="product.title">
+  </div>
+
+  <mat-card-content class="list-product-content">
+    <mat-card-title class="list-product-title">{{ product.title }}</mat-card-title>
   </mat-card-content>
+
+  <mat-card-actions class="list-product-actions">
+    <mat-card-subtitle class="list-product-price">{{ product.price }}</mat-card-subtitle>
+    <button mat-icon-button>
+      <mat-icon aria-label="Add to wish list">favorite</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon aria-label="Add to cart" (click)="onAddToCart()">add_shopping_cart</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card *ngIf="(viewMode$ | async) === 'grid'" class="grid-product">
+  <img
+    class="grid-product-image"
+    [src]="product.thumbnail"
+    [alt]="product.title">
+
+  <mat-card-content>
+    <mat-card-title class="grid-product-title">{{ product.title }}</mat-card-title>
+    <mat-card-subtitle class="grid-product-price">{{ product.price }}</mat-card-subtitle>
+  </mat-card-content>
+
+  <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-icon-button>
+      <mat-icon aria-label="Add to wish list">favorite</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon aria-label="Add to cart" (click)="onAddToCart()" class="grid-add-to-cart">add_shopping_cart</mat-icon>
+    </button>
+  </mat-card-actions>
 </mat-card>
 

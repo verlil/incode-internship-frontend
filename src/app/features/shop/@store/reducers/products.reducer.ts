@@ -5,6 +5,7 @@ import { Filter } from '../../models/filter';
 export interface ProductState {
   products: Product[];
   entities: {[id: string]: Product};
+  view_mode: string;
   filters: Filter;
   loaded: boolean;
   loading: boolean;
@@ -13,6 +14,7 @@ export interface ProductState {
 export const initialState: ProductState = {
   products: [],
   entities: {},
+  view_mode: 'list',
   filters: new Filter(),
   loaded: false,
   loading: false,
@@ -48,6 +50,12 @@ export function reducer(
         entities: action['payload']['entities']
       };
     }
+    case fromProducts.CHANGE_VIEW_MODE: {
+      return {
+        ...state,
+        view_mode: action['payload']
+      };
+    }
 
     default: {
       return state;
@@ -58,6 +66,7 @@ export function reducer(
 
 export const getProducts: any = (state: ProductState): object => state.products;
 export const getProductsEntities: any = (state: ProductState): object => state.entities;
+export const getViewMode: any = (state: ProductState): string => state.view_mode;
 export const getFilters: any = (state: ProductState): object => state.filters;
 export const getProductsLoading: any = (state: ProductState): boolean => state.loading;
 export const getProductsLoaded: any = (state: ProductState): boolean => state.loaded;
