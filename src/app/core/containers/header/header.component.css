@@ -1,13 +1,14 @@
-mat-toolbar{
-    margin-bottom: 10px;
-}
 .example-spacer {
     flex: 1 1 auto;
 }
-.docs-navbar-header {
+.header {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin-bottom: 10px;
     padding: 8px 16px;
-
+}
+.user-login, .logo{
+    color:orange;
+    font-size: 14px;
 }
