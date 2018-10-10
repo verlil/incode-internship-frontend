@@ -12,7 +12,6 @@ import { reducers, effects } from './@store';
 
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
-import { HeaderComponent } from './containers/header/header.component';
 import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
@@ -26,7 +25,7 @@ import { AppRoutingModule } from '../app-routing.module';
     EffectsModule.forFeature(effects),
 
   ],
-  declarations: [CoreComponent, ...fromContainers.containers, fromComponents.components, HeaderComponent],
+  declarations: [CoreComponent, ...fromContainers.containers, fromComponents.components],
   exports: [...fromContainers.containers, fromComponents.components]
 })
 export class CoreModule { }
