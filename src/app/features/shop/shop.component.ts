@@ -18,6 +18,8 @@ export class ShopComponent implements OnInit {
   products$: Observable<Product[]>;
   productsLoaded$: Observable<{}>;
 
+  viewMode$: Observable<string>;
+
   categories$: Observable<Category[]>;
   categoriesLoaded$: Observable<{}>;
 
@@ -52,6 +54,9 @@ export class ShopComponent implements OnInit {
       this.store.dispatch(new fromStore.LoadCategories());
     });
 
+    // loading view mode
+    this.viewMode$ = this.store.pipe(select(fromStore.getViewMode));
+
   }
 
   onFiltersChanged(filters: Filter): void {
@@ -60,5 +65,9 @@ export class ShopComponent implements OnInit {
 
   onAddToCart(product: Product): void {
     this.store.dispatch(new fromStore.AddToCart(product));
+  }
+
+  onViewChanged(view: string): void {
+    this.store.dispatch(new fromStore.ChangeViewMode(view));
   }
 }
