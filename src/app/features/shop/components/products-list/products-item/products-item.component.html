@@ -1,4 +1,4 @@
-<mat-card *ngIf="viewMode === 'list'" class="list-product">
+<mat-card *ngIf="(viewMode$ | async) === 'list'" class="list-product">
   <div class="list-product-image-wrapper">
     <img
       class="list-product-image"
@@ -21,7 +21,7 @@
   </mat-card-actions>
 </mat-card>
 
-<mat-card *ngIf="viewMode === 'grid'" class="grid-product">
+<mat-card *ngIf="(viewMode$ | async) === 'grid'" class="grid-product">
   <img
     class="grid-product-image"
     [src]="product.thumbnail"
