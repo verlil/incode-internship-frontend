@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -17,27 +18,28 @@ import { MatSidenavModule } from '@angular/material';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule,
     MatIconModule,
     FlexLayoutModule,
     MatCardModule,
     MatToolbarModule,
     MatListModule,
     MatRadioModule,
+    MatSidenavModule,
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule,
     MatIconModule,
     FlexLayoutModule,
     MatCardModule,
     MatToolbarModule,
     MatListModule,
     MatRadioModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule {

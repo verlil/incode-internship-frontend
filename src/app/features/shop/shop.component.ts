@@ -57,4 +57,8 @@ export class ShopComponent implements OnInit {
   onFiltersChanged(filters: Filter): void {
     this.store.dispatch(new fromStore.LoadProducts(filters));
   }
+
+  onAddToCart(product: Product): void {
+    this.store.dispatch(new fromStore.AddToCart(product));
+  }
 }
