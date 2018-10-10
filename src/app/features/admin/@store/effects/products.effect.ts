@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 
 import * as productActions from '../actions/products.action';
+import * as notificationActions from '../../../../core/@store/actions';
 import * as fromServices from '../../services';
 import { Product } from '../../../../shared/models/product.model';
 
@@ -22,11 +23,19 @@ export class ProductsEffect {
     switchMap((action: productActions.AddProduct) => {
 
       return this.productService.addProduct(action.payload).pipe(
-        map((product: Product) => {
+        mergeMap((product: Product) => {
 
-          return new productActions.AddProductSuccess(product);
+          return [
+            new productActions.AddProductSuccess(product),
+            new notificationActions.ShowMessage('Product added')
+          ];
         }),
-        catchError((error: Error) => of (new productActions.AddProductFail(error)))
+        catchError((error: Error) => {
+          return [
+            new productActions.AddProductFail(error),
+            new notificationActions.ShowError(error.message)
+          ];
+        })
       );
     })
   );
