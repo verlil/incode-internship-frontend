@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
@@ -12,12 +13,12 @@ import { reducers, effects } from './@store';
 
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
-import { AppRoutingModule } from '../app-routing.module';
+// import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    AppRoutingModule,
+    RouterModule,
     SharedModule,
     ReactiveFormsModule,
     HttpClientModule,

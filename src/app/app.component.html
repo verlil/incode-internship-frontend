@@ -1,2 +1,5 @@
-<app-header></app-header>
+<app-header [userLogin$] = "userLogin$" 
+[isAuthenticated$] = "isAuthenticated$"
+(logout)="onLogout($event)">
+</app-header>
 <router-outlet></router-outlet>
