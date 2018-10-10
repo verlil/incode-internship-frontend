@@ -5,6 +5,7 @@ import { State } from './@store';
 import { Observable } from 'rxjs';
 
 import * as coreStore from './core/@store';
+import * as rootStore from './@store';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,20 @@ import * as coreStore from './core/@store';
 })
 export class AppComponent {
   token: string = localStorage.getItem('token');
-  isLoaded$: Observable<boolean>;
+  isLoading$: Observable<boolean>;
+  user$: Observable<string>;
+  isAuthenticated$: Observable<boolean>;
 
   constructor (private store: Store<State>) {
     this.store.dispatch(new coreStore.LogInSuccess(this.token));
-    this.isLoaded$ = this.store.pipe(select(coreStore.selectLoaded));
+    this.isLoading$ = this.store.pipe(select(coreStore.selectLoading));
+    this.user$ = this.store.pipe(select(coreStore.selectUser));
+    this.isAuthenticated$ = this.store.pipe(select(coreStore.selectIsAuthenticated));
   }
+
+  onLogout(): void {
+    this.store.dispatch(new coreStore.LogOutAction());
+    this.store.dispatch(new rootStore.Go({path: ['login']}));
+  }
+
 }
