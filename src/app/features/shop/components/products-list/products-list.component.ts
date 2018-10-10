@@ -10,9 +10,9 @@ import { Product } from '../../../../shared/models/product';
 })
 export class ProductsListComponent {
   @Input() products$: Observable<Product[]>;
-  @Output() addToCart$: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() addToCart: EventEmitter<Product> = new EventEmitter<Product>();
 
   onAddToCart(product: Product): void {
-    this.addToCart$.emit(product);
+    this.addToCart.emit(product);
   }
 }

@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
-import { map, tap, delay } from 'rxjs/operators';
-
+import { tap } from 'rxjs/operators';
 
 import * as notificationActions from '../actions/notification.actions';
 

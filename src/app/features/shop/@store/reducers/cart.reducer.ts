@@ -28,7 +28,7 @@ export function reducer(
         const stock: number = action['payload']['stock'];
         const quantity: number = state['entities'][action['payload']['id']]['quantity'];
 
-        if ( quantity < stock) {
+        if (quantity < stock) {
           cartItem.sum = action['payload']['price'] + state['entities'][action['payload']['id']]['product']['price'];
           cartItem.quantity = quantity + 1;
 
