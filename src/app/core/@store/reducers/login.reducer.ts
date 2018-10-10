@@ -58,6 +58,8 @@ export function loginReducer(state: LoginState = initialState, action: fromActio
       };
     }
     case fromActions.LOGOUT: {
+      localStorage.clear();
+
       return {
         ...state,
         loading: false,

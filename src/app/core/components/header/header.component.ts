@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class HeaderComponent  {
   @Input() isAuthenticated$: Observable<boolean>;
-  @Input() userLogin$: Observable<string>;
-  @Output() logout: EventEmitter<boolean> = new EventEmitter();
+  @Input() userLogin: string;
+  @Output() logout: EventEmitter<void> = new EventEmitter();
 
   onLogout(): void {
     this.logout.emit();

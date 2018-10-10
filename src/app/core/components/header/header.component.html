@@ -8,7 +8,7 @@
     </div>
     <span class="example-spacer"></span>
     <div *ngIf="(isAuthenticated$ | async)">
-        <span class="user-login"> {{ userLogin$ | async }} </span>
+        <span class="user-login"> {{ userLogin }} </span>
         <a  mat-button (click)="onLogout()">Logout</a>
     </div>
     <div *ngIf="!(isAuthenticated$ | async)">

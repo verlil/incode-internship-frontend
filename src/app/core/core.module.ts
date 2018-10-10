@@ -13,7 +13,6 @@ import { reducers, effects } from './@store';
 
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
-// import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   imports: [
