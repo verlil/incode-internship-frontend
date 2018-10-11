@@ -1,0 +1,12 @@
+.product-image{
+  height: 75px;
+}
+
+.action-icon{
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.quantity-input{
+  width: 40px;
+}

@@ -1,5 +1,6 @@
 import * as fromCart from '../actions/cart.actions';
 import { CartItem } from '../../../../shared/models/cart-item';
+import { Product } from '../../../../shared/models/product';
 
 export interface CartState {
   entities: {[id: string]: CartItem};
@@ -21,7 +22,7 @@ export function reducer(
   switch (action.type) {
 
     case fromCart.ADD_PRODUCT_TO_CART: {
-      const cartItem: CartItem = new CartItem(action['payload']);
+      const cartItem: CartItem = new CartItem(<Product>action['payload']);
       let price: number = 0;
 
       // checking for not null price
@@ -62,7 +63,25 @@ export function reducer(
           total_sum: state.total_sum + price
         };
       }
+    }
 
+    case fromCart.UPDATE_CART_ITEM: {
+      let total_sum: number = 0;
+      let total_quantity: number = 0;
+      const entities: object = {...state.entities, [action['payload']['product']['id']]: action['payload']};
+
+      // recalculating of total sum and quantity
+      Object.keys(entities).map((key: string) => {
+        total_sum += entities[key]['sum'];
+        total_quantity += entities[key]['quantity'];
+      });
+
+      return {
+        ...state,
+        entities: {...state.entities, [action['payload']['product']['id']]: action['payload']},
+        total_sum: total_sum,
+        total_quantity: total_quantity
+      };
     }
 
     default: {

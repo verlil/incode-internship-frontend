@@ -14,6 +14,14 @@ export class FiltersComponent implements OnInit {
   @Output() filtersChanged$: EventEmitter<Filter> = new EventEmitter<Filter>();
   filtersForm: FormGroup;
 
+  ngOnInit(): void {
+    this.filtersForm = this.createFormGroup();
+    this.filtersForm.valueChanges.
+    subscribe((form: object) => {
+      this.filtersChanged$.emit(form['filtersData']);
+    });
+  }
+
   createFormGroup(): FormGroup {
     return new FormGroup({
       filtersData: new FormGroup({
@@ -22,14 +30,6 @@ export class FiltersComponent implements OnInit {
         stock: new FormControl(),
         category_id: new FormControl()
       })
-    });
-  }
-
-  ngOnInit(): void {
-    this.filtersForm = this.createFormGroup();
-    this.filtersForm.valueChanges.
-    subscribe((form: object) => {
-      this.filtersChanged$.emit(form['filtersData']);
     });
   }
 

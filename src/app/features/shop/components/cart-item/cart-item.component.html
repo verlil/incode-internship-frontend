@@ -1,0 +1,23 @@
+<form [formGroup]="cartItemForm">
+  <mat-card formGroupName="cartItemData">
+    <mat-card-content fxLayout="row" fxLayoutAlign="space-between center">
+      <div>
+        <img
+          class="product-image"
+          [src]="cartItem['product']['thumbnail']"
+          [alt]="cartItem['product']['title']">
+      </div>
+      <div>{{ cartItem['product']['title'] }}</div>
+
+      <mat-form-field class="quantity-input">
+        <input formControlName="quantity"
+               type="number"
+               matInput
+               min="0"
+               [max]="cartItem['product']['stock']">
+      </mat-form-field>
+
+      <div>{{ cartItem['sum'] }} <span>$</span></div>
+    </mat-card-content>
+  </mat-card>
+</form>

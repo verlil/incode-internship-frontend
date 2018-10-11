@@ -3,7 +3,7 @@
     <div class = "nav" *ngIf="(isAuthenticated$ | async)">
         <a routerLink="/shop" mat-button>Shop</a>
         <a routerLink="/wishlist" mat-button>Wishlist</a>
-        <a routerLink="/cart" mat-button>Cart</a>
+        <a routerLink="/shop/cart" mat-button>Cart</a>
         <a routerLink="/admin" mat-button>Admin</a>
     </div>
     <span class="example-spacer"></span>
@@ -16,4 +16,3 @@
         <a routerLink="/register" mat-button>Register</a>
     </div>
 </mat-toolbar>
-      

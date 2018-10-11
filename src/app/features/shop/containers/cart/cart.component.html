@@ -1,0 +1,25 @@
+<div fxLayout="row">
+  <div fxFlex="66" fxFlexOffset="17">
+    <h3 mat-subheader>Cart</h3>
+
+    <mat-card *ngIf="cartItems.length < 1">
+      <mat-card-content>
+        <mat-card-title> Your cart is empty</mat-card-title>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-list>
+      <app-cart-item *ngFor="let item of cartItems"
+                     (cartItemQuantityChanged$)="onItemQuantityChanged($event)"
+                     [cartItem]="item">
+      </app-cart-item>
+    </mat-list>
+
+    <div *ngIf="cartItems.length > 0"
+         class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
+      <p class="mat-typography">Total: {{ totalSum$ | async }}</p>
+      <a routerLink="/shop/checkout" mat-raised-button color="primary">Checkout</a>
+
+    </div>
+  </div>
+</div>
