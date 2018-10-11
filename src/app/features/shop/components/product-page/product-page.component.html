@@ -1,0 +1,24 @@
+<div class="product__card">
+  <mat-card class="card" *ngIf="product">
+    <mat-card-header>
+      <mat-card-title>{{ product?.title }}</mat-card-title>
+      <mat-card-subtitle>PRICE: {{ product?.price }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]='product?.thumbnail' alt="product">
+    <mat-card-content>
+      <p>
+      {{ product?.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <form>
+        <mat-form-field class="form__input">
+          <input matInput type="number" min="1" [formControl]="quantity" placeholder="Quantity:">
+        </mat-form-field>
+      </form>
+      <button mat-raised-button color="accent" (click)="onAddToCart(quantity)">
+        ADD TO CART
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
