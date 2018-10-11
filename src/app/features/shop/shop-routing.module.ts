@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
 import { ShopComponent } from './shop.component';
 import { ProductPageComponent } from './containers/product-page/product-page.component';
@@ -12,7 +11,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class ShopRoutingModule {

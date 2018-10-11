@@ -1,24 +1,4 @@
-<div class="product__card">
-  <mat-card class="card" *ngIf="!!(product$ | async)">
-    <mat-card-header>
-      <mat-card-title>{{ (product$ | async)?.title }}</mat-card-title>
-      <mat-card-subtitle>PRICE: {{ (product$ | async)?.price }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image [src]='(product$ | async)?.thumbnail' alt="product">
-    <mat-card-content>
-      <p>
-      {{ (product$ | async).description }}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <form>
-        <mat-form-field class="form__input">
-          <input matInput type="number" min="1" [formControl]="quantity" placeholder="Quantity:">
-        </mat-form-field>
-      </form>
-      <button mat-raised-button color="accent" (click)="onAddToCart(quantity)">
-            ADD TO CART
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+<app-product-page
+    [product]="(product$ | async)"
+    (addToCart)="onAddToCart($event)">
+</app-product-page>

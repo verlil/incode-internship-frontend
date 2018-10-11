@@ -26,6 +26,6 @@ export const getSelectedProduct: MemoizedSelector<object, Product> = createSelec
   getProductsEntities,
   fromRoot.getRouterState,
   (entities: {[id: string]: Product}, router: any): Product => {
-    return router.state && entities[router.state.params.id];
+    return entities[router.state.params.id];
   }
 );

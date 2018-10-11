@@ -58,7 +58,7 @@ export function reducer(
 
         return {
           ...state,
-          entities: {...state.entities, [action['payload']['id']]: cartItem},
+          entities: {...state.entities, [action['payload']['product']['id']]: cartItem},
           total_quantity: state.total_quantity + quantity,
           total_sum: state.total_sum + (price * quantity)
         };
