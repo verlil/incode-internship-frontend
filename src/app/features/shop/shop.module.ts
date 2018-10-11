@@ -17,7 +17,6 @@ import * as fromContainers from './containers';
 
 // services
 import * as fromServices from './services';
-import { ProductPageComponent } from './components/product-page/product-page.component';
 
 @NgModule({
   imports: [
@@ -28,7 +27,7 @@ import { ProductPageComponent } from './components/product-page/product-page.com
     EffectsModule.forFeature(effects)
   ],
   providers: [...fromServices.services],
-  declarations: [...fromContainers.containers, ...fromComponents.components, ProductPageComponent],
+  declarations: [...fromContainers.containers, ...fromComponents.components],
   exports: [...fromContainers.containers, ...fromComponents.components],
 })
 export class ShopModule {
