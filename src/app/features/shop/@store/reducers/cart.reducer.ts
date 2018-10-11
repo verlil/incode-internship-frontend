@@ -21,29 +21,29 @@ export function reducer(
   switch (action.type) {
 
     case fromCart.ADD_PRODUCT_TO_CART: {
-      const cartItem: CartItem = new CartItem(action['payload']);
+      const cartItem: CartItem = new CartItem(action['payload']['product'], action['payload']['quantity']);
       let price: number = 0;
 
       // checking for not null price
-      if (action['payload']['price']) {
-        price = action['payload']['price'];
+      if (action['payload']['product']['price']) {
+        price = action['payload']['product']['price'];
       }
 
       // checking if product is unique in cart
-      if (state['entities'].hasOwnProperty(action['payload']['id'])) {
-        const stock: number = action['payload']['stock'];
-        const quantity: number = state['entities'][action['payload']['id']]['quantity'];
+      if (state['entities'].hasOwnProperty(action['payload']['product']['id'])) {
+        const stock: number = action['payload']['product']['stock'];
+        const quantity: number = action['payload']['quantity'];
 
         if (quantity < stock) {
-          cartItem.sum = price + state['entities'][action['payload']['id']]['product']['price'];
-          cartItem.quantity = quantity + 1;
+          cartItem.sum = price * quantity;
+          cartItem.quantity = quantity;
 
           // product not unique in cart
           return {
             ...state,
-            entities: {...state.entities, [action['payload']['id']]: cartItem},
-            total_quantity: state.total_quantity + 1,
-            total_sum: state.total_sum + price
+            entities: {...state.entities, [action['payload']['product']['id']]: cartItem},
+            total_quantity: state.total_quantity + quantity,
+            total_sum: state.total_sum + (price * quantity)
           };
         }
 
@@ -53,13 +53,14 @@ export function reducer(
         };
 
       } else {
-
+        const quantity: number = action['payload']['quantity'];
         // product is unique in cart
+
         return {
           ...state,
           entities: {...state.entities, [action['payload']['id']]: cartItem},
-          total_quantity: state.total_quantity + 1,
-          total_sum: state.total_sum + price
+          total_quantity: state.total_quantity + quantity,
+          total_sum: state.total_sum + (price * quantity)
         };
       }
 

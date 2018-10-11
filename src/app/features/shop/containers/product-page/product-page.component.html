@@ -1,30 +1,24 @@
-<mat-card class="product__card" *ngIf="product$">
-  <mat-card-header>
-    <mat-card-title>{{ product.title }}</mat-card-title>
-    <mat-card-subtitle>{{ product.price }}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image [src]='product.thumbnail' alt="product">
-  <mat-card-content>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam, porro.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, autem?
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, sit!
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-
-  <button mat-raised-button color="accent" (click)="onAddToCart()">
-          ADD TO CART
-  </button>
-
-    <!-- <form class="form__main" [formGroup]="productForm" (ngSubmit)="onAddToCart(productForm.value)">
-
-      <mat-form-field class="form__input">
-        <input matInput type="number" formControlName="title" placeholder="Quantity:">
-      </mat-form-field>
-      
-      <button mat-raised-button color="accent" class="form__btn" type="submit" [disabled]="!productForm.valid">ADD TO CART</button>
-  
-    </form> -->
-  </mat-card-actions>
-</mat-card>
+<div class="product__card">
+  <mat-card class="card" *ngIf="!!(product$ | async)">
+    <mat-card-header>
+      <mat-card-title>{{ (product$ | async)?.title }}</mat-card-title>
+      <mat-card-subtitle>PRICE: {{ (product$ | async)?.price }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]='(product$ | async)?.thumbnail' alt="product">
+    <mat-card-content>
+      <p>
+      {{ (product$ | async).description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <form>
+        <mat-form-field class="form__input">
+          <input matInput type="number" min="1" [formControl]="quantity" placeholder="Quantity:">
+        </mat-form-field>
+      </form>
+      <button mat-raised-button color="accent" (click)="onAddToCart(quantity)">
+            ADD TO CART
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
