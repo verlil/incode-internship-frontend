@@ -64,7 +64,7 @@ export class ShopComponent implements OnInit {
   }
 
   onAddToCart(product: Product): void {
-    this.store.dispatch(new fromStore.AddToCart(product));
+    this.store.dispatch(new fromStore.AddToCart({product, quantity: 1}));
   }
 
   onViewChanged(view: string): void {

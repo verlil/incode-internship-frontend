@@ -12,6 +12,9 @@
 
   <mat-card-actions class="list-product-actions">
     <mat-card-subtitle class="list-product-price">{{ product.price }}</mat-card-subtitle>
+    <button mat-icon-button routerLink="product/{{product.id}}">
+      <mat-icon aria-label="details">info</mat-icon>
+    </button>
     <button mat-icon-button>
       <mat-icon aria-label="Add to wish list">favorite</mat-icon>
     </button>

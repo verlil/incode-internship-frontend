@@ -7,7 +7,8 @@ export const UPDATE_CART_ITEM: string = '[Shop] Update Item In Cart';
 
 export class AddToCart implements Action {
   readonly type: string = ADD_PRODUCT_TO_CART;
-  constructor(public payload: Product) {
+
+  constructor(public payload: {product: Product, quantity: number}) {
   }
 }
 
