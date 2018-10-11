@@ -16,19 +16,17 @@ export class CartItemComponent implements OnInit {
   ngOnInit(): void {
     this.cartItemForm = this.createFormGroup(this.cartItem);
     this.cartItemForm.valueChanges.
-    subscribe((form: object) => {
-      form['cartItemData']['sum'] = form['cartItemData']['quantity'] * form['cartItemData']['product']['price'];
-      this.cartItemQuantityChanged$.emit(form['cartItemData']);
+    subscribe((form: CartItem) => {
+      form['sum'] = form['quantity'] * form['product']['price'];
+      this.cartItemQuantityChanged$.emit(form);
     });
   }
 
   createFormGroup(cartItem: CartItem): FormGroup {
     return new FormGroup({
-      cartItemData: new FormGroup({
-        product: new FormControl(cartItem['product']),
-        quantity: new FormControl(cartItem['quantity']),
-        sum: new FormControl(cartItem['sum'])
-      })
+      product: new FormControl(cartItem['product']),
+      quantity: new FormControl(cartItem['quantity']),
+      sum: new FormControl(cartItem['sum'])
     });
   }
 

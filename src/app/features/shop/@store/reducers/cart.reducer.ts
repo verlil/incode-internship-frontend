@@ -68,7 +68,7 @@ export function reducer(
     case fromCart.UPDATE_CART_ITEM: {
       let total_sum: number = 0;
       let total_quantity: number = 0;
-      const entities: object = {...state.entities, [action['payload']['product']['id']]: action['payload']};
+      const entities: {[id: string]: CartItem} = {...state.entities, [action['payload']['product']['id']]: action['payload']};
 
       // recalculating of total sum and quantity
       Object.keys(entities).map((key: string) => {
@@ -78,7 +78,7 @@ export function reducer(
 
       return {
         ...state,
-        entities: {...state.entities, [action['payload']['product']['id']]: action['payload']},
+        entities: entities,
         total_sum: total_sum,
         total_quantity: total_quantity
       };

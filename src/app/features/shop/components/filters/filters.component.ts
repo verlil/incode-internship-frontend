@@ -17,19 +17,17 @@ export class FiltersComponent implements OnInit {
   ngOnInit(): void {
     this.filtersForm = this.createFormGroup();
     this.filtersForm.valueChanges.
-    subscribe((form: object) => {
-      this.filtersChanged$.emit(form['filtersData']);
+    subscribe((form: Filter) => {
+      this.filtersChanged$.emit(form);
     });
   }
 
   createFormGroup(): FormGroup {
     return new FormGroup({
-      filtersData: new FormGroup({
-        price_from: new FormControl(),
-        price_to: new FormControl(),
-        stock: new FormControl(),
-        category_id: new FormControl()
-      })
+      price_from: new FormControl(),
+      price_to: new FormControl(),
+      stock: new FormControl(),
+      category_id: new FormControl()
     });
   }
 

@@ -17,7 +17,6 @@ import * as fromContainers from './containers';
 
 // services
 import * as fromServices from './services';
-import { CartComponent } from './containers/cart/cart.component';
 
 @NgModule({
   imports: [
@@ -28,7 +27,7 @@ import { CartComponent } from './containers/cart/cart.component';
     EffectsModule.forFeature(effects)
   ],
   providers: [...fromServices.services],
-  declarations: [...fromContainers.containers, ...fromComponents.components, CartComponent],
+  declarations: [...fromContainers.containers, ...fromComponents.components],
   exports: [...fromContainers.containers, ...fromComponents.components],
 })
 export class ShopModule {

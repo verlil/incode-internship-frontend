@@ -10,29 +10,17 @@ import { CartItem } from '../../../../shared/models/cart-item';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  entities$: Observable<{}>;
+  cartItems$: Observable<CartItem[]>;
   totalQuantity$: Observable<number>;
   totalSum$: Observable<number>;
-
-  cartItems: CartItem[] = [];
 
   constructor(private store: Store<fromStore.ShopState>) {
   }
 
   ngOnInit(): void {
-    this.entities$ = this.store.pipe(select(fromStore.getCartEntities));
+    this.cartItems$ = this.store.pipe(select(fromStore.getCartItems));
     this.totalQuantity$ = this.store.pipe(select(fromStore.getCartTotalQuantity));
     this.totalSum$ = this.store.pipe(select(fromStore.getCartTotalSum));
-
-    this.entities$.subscribe(
-      (entities: object) => {
-        this.cartItems = [];
-        Object.keys(entities).map((key: string) => {
-          this.cartItems.push(entities[key]);
-        });
-      }
-    );
-
   }
 
   onItemQuantityChanged(cartItem: CartItem): void {
