@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 
+import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 
 import * as fromShopStore from '../../@store';
@@ -24,6 +24,11 @@ export class CheckoutComponent implements OnInit {
   cartEntities$: Observable<{[id: string]: CartItem}>;
 
   order: Order = new Order();
+
+  cardNumberRegExp: RegExp = new RegExp('[0-9]{16}');
+  cardholderNameRegExp: RegExp = new RegExp('([a-zA-z]{1,}[ ]){1,}[a-zA-z]{1,}');
+  expiryDateRegExp: RegExp = new RegExp('[0-9]{2}[/][0-9]{2}');
+  securityCodeRegExp: RegExp = new RegExp('[0-9]{3}');
 
   constructor(private shopStore: Store<fromShopStore.ShopState>,
               private coreStore: Store<fromCoreStore.CoreState>) {
@@ -71,28 +76,28 @@ export class CheckoutComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('[0-9]{16}')
+          Validators.pattern(this.cardNumberRegExp)
         ])
       ),
       cardholder_name: new FormControl(
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('([a-zA-z]{1,}[ ]){1,}[a-zA-z]{1,}')
+          Validators.pattern(this.cardholderNameRegExp)
         ])
       ),
       expiry_date: new FormControl(
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('[0-9]{2}[/][0-9]{2}')
+          Validators.pattern(this.expiryDateRegExp)
         ])
       ),
       security_code: new FormControl(
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('[0-9]{3}')
+          Validators.pattern(this.securityCodeRegExp)
         ])
       )
     });

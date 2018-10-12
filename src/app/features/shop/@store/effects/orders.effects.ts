@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import {catchError, mergeMap, switchMap} from 'rxjs/operators';
+import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 
 import * as ordersActions from '../actions/orders.actions';
 import * as notificationsActions from '../../../../core/@store/actions';
