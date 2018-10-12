@@ -1,0 +1,42 @@
+<div fxLayout="row">
+  <div fxFlex="66" fxFlexOffset="17">
+    <h3 mat-subheader>Payment info</h3>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="paymentForm">
+      <mat-card>
+        <mat-card-content>
+
+          <section>
+            <mat-form-field class="card-input">
+              <input matInput formControlName="card_number" placeholder="Card number">
+            </mat-form-field>
+            <mat-form-field class="card-input">
+              <input matInput formControlName="expiry_date" placeholder="Expiry date mm/yy">
+            </mat-form-field>
+          </section>
+
+          <section>
+            <mat-form-field class="card-input">
+              <input matInput formControlName="security_code" placeholder="Security code">
+            </mat-form-field>
+            <mat-form-field class="card-input">
+              <input matInput formControlName="cardholder_name" placeholder="Name on card">
+            </mat-form-field>
+          </section>
+
+        </mat-card-content>
+      </mat-card>
+
+      <div class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
+        <p class="mat-typography">Total: {{ total$ | async }}</p>
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="paymentForm.invalid">Create order
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

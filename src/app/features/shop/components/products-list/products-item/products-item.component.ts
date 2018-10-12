@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../../../../shared/models/product';
 import { Observable } from 'rxjs';
+
+import { Product } from '../../../../../shared/models/product';
 
 @Component({
   selector: 'app-products-item',

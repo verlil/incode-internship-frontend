@@ -23,7 +23,7 @@ export function reducer(
 
     case fromCart.ADD_PRODUCT_TO_CART: {
 
-      const cartItem: CartItem = new CartItem(<Product>action['payload'], action['payload']['quantity']);
+      const cartItem: CartItem = new CartItem(<Product>action['payload']['product'], action['payload']['quantity']);
 
       let price: number = 0;
 
@@ -71,7 +71,7 @@ export function reducer(
     case fromCart.UPDATE_CART_ITEM: {
       let total_sum: number = 0;
       let total_quantity: number = 0;
-      const entities: {[id: string]: CartItem} = {...state.entities, [action['payload']['product']['id']]: action['payload']};
+      const entities: {[id: string]: CartItem} = {...state.entities, [action['payload']['product']['id']]: <CartItem>action['payload']};
 
       // recalculating of total sum and quantity
       Object.keys(entities).map((key: string) => {
